@@ -13,6 +13,7 @@ import { Link } from "@mui/material";
 import { Home } from "@mui/icons-material";
 // import Link from "next/link";
 import LayersOutlinedIcon from '@mui/icons-material/LayersOutlined';
+import AccessAlarmOutlinedIcon from '@mui/icons-material/AccessAlarmOutlined';
 
 export const mainListItems = (
   <React.Fragment>
@@ -42,6 +43,14 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Reports" />
     </ListItemButton>
+    <Link underline="none" color="inherit" href={`/recordatorios`}>
+      <ListItemButton>
+        <ListItemIcon>
+          <AccessAlarmOutlinedIcon />
+        </ListItemIcon>
+        <ListItemText primary="Recordatorios" />
+      </ListItemButton>
+    </Link>
     <Link underline="none" color="inherit" href={`/cargos`}>
       <ListItemButton>
         <ListItemIcon>
