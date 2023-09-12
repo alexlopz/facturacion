@@ -35,6 +35,7 @@ const VisaLink: React.FC<any> = ({ clientes, recordatorios }) => {
         <Grid item xs={12} md={8}>
           <Card variant="outlined">
             <CardContent>
+            <DataTable rows={[]} columns={[]}/>
             </CardContent>
           </Card>
         </Grid>
