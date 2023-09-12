@@ -18,7 +18,7 @@ const columns: GridColDef[] = [
   {field: "fecha_creacion", headerName:"Fecha de Creacion" },
 ]
 
-const Recordatorios: React.FC<any> = ({ clientes, recordatorios }) => {
+const VisaLink: React.FC<any> = ({ clientes, recordatorios }) => {
 
   const verDato = (formulario: IRecordatorio) => {
     console.log('formulario-rec', formulario);
@@ -29,14 +29,12 @@ const Recordatorios: React.FC<any> = ({ clientes, recordatorios }) => {
         <Grid item xs={12} md={4}>
           <Card variant="outlined" sx={{bgcolor: "#f5f5f5"}}>
             <CardContent>
-              <RecordatoriosForm clientes={clientes} handleSubmit={verDato}/>
             </CardContent>
           </Card>
         </Grid>
         <Grid item xs={12} md={8}>
           <Card variant="outlined">
             <CardContent>
-              <DataTable rows={recordatorios} columns={columns}/>
             </CardContent>
           </Card>
         </Grid>
@@ -56,4 +54,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 
-export default Recordatorios;
+export default VisaLink;

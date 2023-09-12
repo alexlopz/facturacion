@@ -16,7 +16,7 @@ const formDefault: IRecordatorio = {
   frecuencia: ""
 };
 
-const RecordatoriosForm: React.FC<any> = ({ handleSubmit }) => {
+const RecordatoriosForm: React.FC<any> = ({ handleSubmit, clientes }) => {
   const [formulario, setFormulario] = useState<IRecordatorio>(formDefault);
 
   const handleSelectedChange = (event: SelectChangeEvent) => {
@@ -43,9 +43,9 @@ const RecordatoriosForm: React.FC<any> = ({ handleSubmit }) => {
           name="cliente"
           onChange={handleSelectedChange}
         >
-          <MenuItem value={1}>Gasolinera Shell</MenuItem>
-          <MenuItem value={2}>Gasolina Puma</MenuItem>
-          <MenuItem value={3}>Dollar Citi</MenuItem>
+          {clientes.map((cliente: any, index: number) => (
+            <MenuItem key={index} value={cliente.id}>{cliente.nombre}</MenuItem>
+          ))}
         </Select>
       </FormControl>
       <FormControl fullWidth sx={selectStyle}>
