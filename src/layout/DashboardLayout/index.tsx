@@ -190,11 +190,20 @@ const DashboardLayout: React.FC<any> = ({ children, title }) => {
             height: "100vh",
             border: "1px solid #dbdbdb",
             borderRadius: 2,
-            bgcolor: "#f5f5f5",
+            bgcolor: "white",
             m: { xs: 1, md: 4 },
           }}
         >
-          <Box sx={{ my: 2, mx: 2 }}>
+          <Box
+            sx={{
+              my: 2,
+              mx: 2,
+              backgroundColor: "black",
+              color: "white",
+              margin: 0,
+              padding: 2,
+            }}
+          >
             <Typography gutterBottom variant="h5" component="div">
               {title}
             </Typography>

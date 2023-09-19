@@ -10,13 +10,7 @@ import {
 import React, { useState } from "react";
 import { ICargo } from "./type";
 
-const formDefault: ICargo = {
-  cliente: "",
-  factura: "",
-  concepto: "",
-};
-
-const CargosForm: React.FC<any> = ({ handleSubmit, clientes }) => {
+const CargosForm: React.FC<any> = ({ handleSubmit, clientes, formDefault }) => {
   const [formulario, setFormulario] = useState<ICargo>(formDefault);
 
   const handleSelectedChange = (event: SelectChangeEvent) => {
@@ -45,7 +39,9 @@ const CargosForm: React.FC<any> = ({ handleSubmit, clientes }) => {
           onChange={handleSelectedChange}
         >
           {clientes.map((cliente: any, index: number) => (
-            <MenuItem key={index} value={cliente.id}>{cliente.nombre}</MenuItem>
+            <MenuItem key={index} value={cliente.id}>
+              {cliente.nombre}
+            </MenuItem>
           ))}
         </Select>
       </FormControl>
@@ -78,15 +74,6 @@ const CargosForm: React.FC<any> = ({ handleSubmit, clientes }) => {
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
-      </FormControl>
-      <FormControl fullWidth sx={selectStyle}>
-        <TextField
-          fullWidth
-          id="outlined-basic"
-          label="Outlined"
-          variant="outlined"
-          inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
-        />
       </FormControl>
       <FormControl fullWidth sx={selectStyle}>
         <Button type="submit" variant="contained" color="success">

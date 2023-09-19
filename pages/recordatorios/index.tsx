@@ -9,34 +9,34 @@ import { getClientes } from "../../src/services/clientes";
 import { getRecordatorios } from "../../src/services/recordatorios";
 
 const columns: GridColDef[] = [
-  {field: "id", headerName:"ID" },
-  {field: "cliente", headerName:"Cliente" },
-  {field: "factura", headerName:"Factura" },
-  {field: "metodo", headerName:"Metodo" },
-  {field: "frecuencia", headerName:"Frecuencia" },
-  {field: "status", headerName:"Estado" },
-  {field: "fecha_creacion", headerName:"Fecha de Creacion" },
-]
+  { field: "id", headerName: "ID" },
+  { field: "cliente", headerName: "Cliente" },
+  { field: "factura", headerName: "Factura" },
+  { field: "metodo", headerName: "Metodo" },
+  { field: "frecuencia", headerName: "Frecuencia" },
+  { field: "status", headerName: "Estado" },
+  { field: "fecha_creacion", headerName: "Fecha de Creacion" },
+];
 
 const Recordatorios: React.FC<any> = ({ clientes, recordatorios }) => {
-
   const verDato = (formulario: IRecordatorio) => {
-    console.log('formulario-rec', formulario);
-  }
+    console.log("formulario-rec", formulario);
+  };
+  const styleTable = { height: "100%" };
   return (
     <DashboardLayout title={"Recordatorios"}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={4}>
-          <Card variant="outlined" sx={{bgcolor: "#f5f5f5"}}>
+          <Card variant="outlined" sx={styleTable}>
             <CardContent>
-              <RecordatoriosForm clientes={clientes} handleSubmit={verDato}/>
+              <RecordatoriosForm clientes={clientes} handleSubmit={verDato} />
             </CardContent>
           </Card>
         </Grid>
         <Grid item xs={12} md={8}>
           <Card variant="outlined">
             <CardContent>
-              <DataTable rows={recordatorios} columns={columns}/>
+              <DataTable rows={recordatorios} columns={columns} />
             </CardContent>
           </Card>
         </Grid>
@@ -51,7 +51,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
       clientes,
-      recordatorios
+      recordatorios,
     },
   };
 };
