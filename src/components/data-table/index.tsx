@@ -15,6 +15,7 @@ const DataTable: React.FC<ITable> = ({ rows, columns }) => {
             },
           }}
           pageSizeOptions={[5, 10]}
+          hideFooterSelectedRowCount
         />
       </div>
     </div>
