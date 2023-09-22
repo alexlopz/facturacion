@@ -1,13 +1,13 @@
 import { Card, CardContent, Grid } from "@mui/material";
 import { GridActionsCellItem, GridColDef } from "@mui/x-data-grid";
 import { GetServerSideProps } from "next";
-import CargosForm from "../../src/components/cargos/cargos-form";
+import CargosForm from "../../src/components/cargos/form";
 import DataTable from "../../src/components/data-table";
 import DashboardLayout from "../../src/layout/DashboardLayout";
 import { getCargos } from "../../src/services/cargos";
 import { getClientes } from "../../src/services/clientes";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { ICargo } from "../../src/components/cargos/cargos-form/type";
+import { ICargo } from "../../src/components/cargos/form/type";
 import { useState } from "react";
 
 const formDefault: ICargo = {
