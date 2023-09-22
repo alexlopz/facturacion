@@ -5,7 +5,7 @@ import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PeopleIcon from "@mui/icons-material/People";
-import BarChartIcon from "@mui/icons-material/BarChart";
+
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import { Link } from "@mui/material";
 import { Home } from "@mui/icons-material";
@@ -13,10 +13,14 @@ import { Home } from "@mui/icons-material";
 import LayersOutlinedIcon from '@mui/icons-material/LayersOutlined';
 import AccessAlarmOutlinedIcon from '@mui/icons-material/AccessAlarmOutlined';
 import PaymentOutlinedIcon from '@mui/icons-material/PaymentOutlined';
+import CheckIcon from '@mui/icons-material/Check';
+import NoteAltIcon from '@mui/icons-material/NoteAlt';
+import HandshakeIcon from '@mui/icons-material/Handshake';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 
 export const mainListItems = (
   <React.Fragment>
-   <Link underline="none" color="inherit" href={`/`}>
+    <Link underline="none" color="inherit" href={`/`}>
       <ListItemButton>
         <ListItemIcon>
           <Home />
@@ -36,12 +40,43 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Customers" />
     </ListItemButton>
+
+    <Link underline="none" color="inherit" href={`/solicitud`}>
     <ListItemButton>
       <ListItemIcon>
-        <BarChartIcon />
+        <LocalShippingIcon />
       </ListItemIcon>
-      <ListItemText primary="Reports" />
+      <ListItemText primary="Rutas de Cobro" />
     </ListItemButton>
+    </Link>
+
+    <Link underline="none" color="inherit" href={`/solicitud`}>
+    <ListItemButton>
+      <ListItemIcon>
+        <HandshakeIcon />
+      </ListItemIcon>
+      <ListItemText primary="Convenios de Pago" />
+    </ListItemButton>
+    </Link>
+
+    <Link underline="none" color="inherit" href={`/solicitud`}>
+    <ListItemButton>
+      <ListItemIcon>
+        <NoteAltIcon />
+      </ListItemIcon>
+      <ListItemText primary="Solicitud de Crédito" />
+    </ListItemButton>
+    </Link>
+    
+    <Link underline="none" color="inherit" href={`/autorizacion`}>
+    <ListItemButton>
+      <ListItemIcon>
+        <CheckIcon />
+      </ListItemIcon>
+      <ListItemText primary="Autorizaciones" />
+    </ListItemButton>
+    </Link>
+
     <Link underline="none" color="inherit" href={`/visalink`}>
       <ListItemButton>
         <ListItemIcon>
