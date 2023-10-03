@@ -77,7 +77,7 @@ const CargosForm: React.FC<any> = ({ handleSubmit, clientes, formDefault }) => {
       </FormControl>
       <FormControl fullWidth sx={selectStyle}>
         <Button type="submit" variant="contained" color="success">
-          Primary
+          Guardar
         </Button>
       </FormControl>
     </form>

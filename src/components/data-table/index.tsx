@@ -4,7 +4,7 @@ import { ITable } from "./type";
 const DataTable: React.FC<ITable> = ({ rows, columns }) => {
   return (
     <div style={{ width: "100%" }}>
-      <div style={{ height: 350, width: "100%" }}>
+      <div style={{ width: "100%" }}>
         <DataGrid
           rows={rows}
           columns={columns}
