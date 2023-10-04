@@ -10,13 +10,7 @@ import {
 import React, { useState } from "react";
 import { ICargo } from "./type";
 
-const formDefault: ICargo = {
-  cliente: "",
-  factura: "",
-  concepto: "",
-};
-
-const CargosForm: React.FC<any> = ({ handleSubmit }) => {
+const CargosForm: React.FC<any> = ({ handleSubmit, clientes, formDefault }) => {
   const [formulario, setFormulario] = useState<ICargo>(formDefault);
 
   const handleSelectedChange = (event: SelectChangeEvent) => {
@@ -34,7 +28,7 @@ const CargosForm: React.FC<any> = ({ handleSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit(formulario)}>
-      <FormControl fullWidth sx={selectStyle} error>
+      <FormControl fullWidth sx={selectStyle}>
         <InputLabel id="demo-simple-select-label">Cliente</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -44,9 +38,11 @@ const CargosForm: React.FC<any> = ({ handleSubmit }) => {
           name="cliente"
           onChange={handleSelectedChange}
         >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          {clientes.map((cliente: any, index: number) => (
+            <MenuItem key={index} value={cliente.id}>
+              {cliente.nombre}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
       <FormControl fullWidth sx={selectStyle}>
@@ -78,15 +74,6 @@ const CargosForm: React.FC<any> = ({ handleSubmit }) => {
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
-      </FormControl>
-      <FormControl fullWidth sx={selectStyle}>
-        <TextField
-          fullWidth
-          id="outlined-basic"
-          label="Outlined"
-          variant="outlined"
-          inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
-        />
       </FormControl>
       <FormControl fullWidth sx={selectStyle}>
         <Button type="submit" variant="contained" color="success">
