@@ -60,6 +60,7 @@ const VisalinkForm: React.FC<any> = ({ handleSubmit, formDefault }) => {
           type="number"
           required
           onChange={handleChange}
+          inputProps={{ inputMode: 'numeric', pattern: '^[0-9]{1,4}(?:\.[0-9]{1,2})?$'}}
         />
       </FormControl>
       <FormControl fullWidth sx={selectStyle}>

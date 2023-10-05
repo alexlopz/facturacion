@@ -10,12 +10,12 @@ import { getRecordatorios } from "../../src/services/recordatorios";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID" },
-  { field: "cliente", headerName: "Cliente" },
+  { field: "cliente", headerName: "Cliente", minWidth: 150, maxWidth: 300 },
   { field: "factura", headerName: "Factura" },
-  { field: "metodo", headerName: "Metodo" },
+  { field: "metodo", headerName: "Metodo", minWidth: 150, maxWidth: 200 },
   { field: "frecuencia", headerName: "Frecuencia" },
   { field: "status", headerName: "Estado" },
-  { field: "fecha_creacion", headerName: "Fecha de Creacion" },
+  { field: "fecha_creacion", headerName: "Fecha de Creacion", width: 150 },
 ];
 
 const Recordatorios: React.FC<any> = ({ clientes, recordatorios }) => {

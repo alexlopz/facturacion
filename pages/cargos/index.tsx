@@ -9,6 +9,7 @@ import { getClientes } from "../../src/services/clientes";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { ICargo } from "../../src/components/cargos/form/type";
 import { useState } from "react";
+import CargosTable from "../../src/components/cargos/table";
 
 const formDefault: ICargo = {
   cliente: "",
@@ -18,25 +19,7 @@ const formDefault: ICargo = {
 
 const Cargos: React.FC<any> = ({ cargos, clientes }) => {
   const [formulario, setFormulario] = useState<ICargo>(formDefault);
-  const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", width: 10 },
-    { field: "cliente", headerName: "Cliente", width: 200 },
-    { field: "factura", headerName: "No. Factura", width: 100 },
-    { field: "concepto", headerName: "Concepto", width: 200 },
-    { field: "monto", headerName: "Monto" },
-    {
-      field: "actions",
-      type: "actions",
-      width: 10,
-      getActions: (params) => [
-        <GridActionsCellItem
-          icon={<VisibilityIcon />}
-          label="Delete"
-          onClick={(e) => deleteUser(e, params.row)}
-        />,
-      ],
-    },
-  ];
+
 
   const deleteUser = (
     e: React.MouseEvent<HTMLButtonElement>,
@@ -64,7 +47,7 @@ const Cargos: React.FC<any> = ({ cargos, clientes }) => {
         <Grid item xs={12} md={8}>
           <Card variant="outlined" sx={styleTable}>
             <CardContent>
-              <DataTable rows={cargos} columns={columns} />
+             <CargosTable cargos={cargos}  />
             </CardContent>
           </Card>
         </Grid>
