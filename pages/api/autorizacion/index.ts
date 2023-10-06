@@ -37,7 +37,7 @@ export default async function handler(
       {
         id: 5,
         cliente: "Farmacia Saludable",
-        factura: 77777,
+        factura: 76777,
         monto: 400.25,
         fecha_creacion: "12/09/2023",
       },

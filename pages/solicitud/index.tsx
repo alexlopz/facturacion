@@ -1,58 +1,76 @@
 import { Card, CardContent, Grid } from "@mui/material";
 import { GridActionsCellItem, GridColDef } from "@mui/x-data-grid";
 import { GetServerSideProps } from "next";
-import CargosForm from "../../src/components/cargos/cargos-form";
 import DataTable from "../../src/components/data-table";
 import DashboardLayout from "../../src/layout/DashboardLayout";
 import { getCargos } from "../../src/services/cargos";
 import { getClientes } from "../../src/services/clientes";
+import { getDetalle_facturas} from "../../src/services/detalle_factura";
+import TextField from '@mui/material/TextField';
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { ICargo } from "../../src/components/cargos/cargos-form/type";
 import { useState } from "react";
+import { getSolicitudes } from "../../src/services/solicitudes_credito";
+import SolicitudesForm from "../../src/components/solicitudes-form";
+import { ISolicitud } from "../../src/components/solicitudes-form/type";
+import Box from '@mui/material/Box';
+import { CenterFocusStrong } from "@mui/icons-material";
 
-
-const formDefault: ICargo = {
+const formDefault: any = {
   cliente: "",
   factura: "",
   concepto: "",
 };
 
-const Solicitud: React.FC<any> = ({ cargos, clientes }) => {
-  const [formulario, setFormulario] = useState<ICargo>(formDefault);
+const Solicitud: React.FC<any> = ({ cargos, clientes,detalle}) => {
+  const [formulario, setFormulario] = useState<any>(formDefault);
   const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", width: 10 },
-    { field: "cliente", headerName: "Cliente", width: 200 },
-    { field: "factura", headerName: "No. Factura", width: 100 },
-    { field: "concepto", headerName: "Concepto", width: 200 },
-    { field: "monto", headerName: "Monto" },
-    {
-      field: "actions",
-      type: "actions",
-      width: 10,
-      getActions: (params) => [
-        <GridActionsCellItem
-          icon={<VisibilityIcon />}
-          label="Delete"
-          onClick={(e) => deleteUser(e, params.row)}
-        />,
-      ],
-    },
+    { field: "id", headerName: "No.", width: 10 },
+    { field: "articulo", headerName: "Artículo", width: 170 },
+    { field: "cantidad", headerName: "Cantidad", width: 100 },
+    { field: "descripcion", headerName: "Descripción", width: 200 },
+    { field: "precio_unidad", headerName: "Precio Unidad" },
+    { field: "subtotal", headerName: "Subtotal" },  
   ];
 
-  const deleteUser = (
-    e: React.MouseEvent<HTMLButtonElement>,
-    params: ICargo
-  ) => {
-    console.log("params", params);
-    setFormulario(params);
-  };
+ 
 
   const styleTable = { height: "100%" };
   return (
     <DashboardLayout title={"Nueva Solicitud"}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={4}>
+          <Card variant="outlined" sx={styleTable}>
+            <CardContent>
+              <SolicitudesForm
+                clientes={clientes}
+                handleSubmit={(e: any) => console.log("eee", e)}
+                formDefault={formulario}
+              />
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} md={8}>
+          <Card variant="outlined" sx={styleTable}>
+            <CardContent>
+            <h3>Detalle de Factura</h3>
+              <DataTable rows={detalle} columns={columns} />
+              <Box 
+      component="form"
+      sx={{
+        '& > :not(style)': { m: 0, width: '20ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <h3>Total</h3>
+      <TextField id="outlined-basic" variant="outlined" value="306.00"/>
       
-     
-
+    </Box>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
     </DashboardLayout>
   );
 };
@@ -60,10 +78,12 @@ const Solicitud: React.FC<any> = ({ cargos, clientes }) => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const clientes = await getClientes();
   const cargos = await getCargos();
+  const detalle = await getDetalle_facturas();
   return {
     props: {
       cargos,
       clientes,
+      detalle,
     },
   };
 };

@@ -50,7 +50,7 @@ export const mainListItems = (
     </ListItemButton>
     </Link>
 
-    <Link underline="none" color="inherit" href={`/solicitud`}>
+    <Link underline="none" color="inherit" href={`/convenios`}>
     <ListItemButton>
       <ListItemIcon>
         <HandshakeIcon />
