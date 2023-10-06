@@ -1,31 +1,39 @@
 import { Card, CardContent, Grid } from "@mui/material";
 import { GridActionsCellItem, GridColDef } from "@mui/x-data-grid";
 import { GetServerSideProps } from "next";
-import CargosForm from "../../src/components/cargos/cargos-form";
+//import CargosForm from "../../src/components/cargos/cargos-form";
 import DataTable from "../../src/components/data-table";
 import DashboardLayout from "../../src/layout/DashboardLayout";
 import { getCargos } from "../../src/services/cargos";
 import { getClientes } from "../../src/services/clientes";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { ICargo } from "../../src/components/cargos/cargos-form/type";
+ //import { Ideudores } from "../../src/components/saldo-forms/type";
+ import { Ideudores } from "../../src/components/deudores-forms/type";
+ import DeudoresForms from "../../src/components/deudores-forms";
 import { useState } from "react";
-import { Idebito } from "../../src/components/debito/debito-forms/type";
 
-const formDefault: ICargo= {
+
+
+const formDefault: Ideudores= {
   cliente: "",
   factura: "",
-  concepto: "",
+  num_fecha: "",
+  monto: "",
+  descripcion:"",
+  plazos:"",
+  meses:""
 };
 
-const Cargos: React.FC<any> = ({ cargos, clientes }) => {
-  const [formulario, setFormulario] = useState<ICargo>(formDefault);
+const Dedudores: React.FC<any> = ({ cargos, clientes }) => {
+  const [formulario, setFormulario] = useState<Ideudores>(formDefault);
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 10 },
     { field: "cliente", headerName: "Cliente", width: 200 },
-    { field: "factura", headerName: "No. Factura", width: 100 },
-    { field: "concepto", headerName: "Concepto", width: 200 },
-    { field: "monto", headerName: "Monto" },
-    
+    { field: "monto", headerName: "Venta al Credito", width: 100 },
+    { field: "num_fecha", headerName: "No. Fecha", width: 100},
+    { field: "plazos", headerName: "Plazos", width: 75 },
+    { field: "meses", headerName: "Vencimiento", width: 100 },
+    { field: "descripcion", headerName: "Descripción" },
     {
       field: "actions",
       type: "actions",
@@ -42,7 +50,7 @@ const Cargos: React.FC<any> = ({ cargos, clientes }) => {
 
   const deleteUser = (
     e: React.MouseEvent<HTMLButtonElement>,
-    params: ICargo
+    params: Ideudores
   ) => {
     console.log("params", params);
     setFormulario(params);
@@ -50,12 +58,12 @@ const Cargos: React.FC<any> = ({ cargos, clientes }) => {
 
   const styleTable = { height: "100%" };
   return (
-    <DashboardLayout title={"Cargos"}>
+    <DashboardLayout title={"Lista de Deudores"}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={4}>
           <Card variant="outlined" sx={styleTable}>
             <CardContent>
-              <CargosForm
+              <DeudoresForms
                 clientes={clientes}
                 handleSubmit={(e: any) => console.log("eee", e)}
                 formDefault={formulario}
@@ -86,4 +94,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 
-export default Cargos;
+export default Dedudores;

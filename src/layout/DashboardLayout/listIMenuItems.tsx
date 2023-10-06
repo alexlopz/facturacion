@@ -13,6 +13,10 @@ import { Home } from "@mui/icons-material";
 import LayersOutlinedIcon from '@mui/icons-material/LayersOutlined';
 import AccessAlarmOutlinedIcon from '@mui/icons-material/AccessAlarmOutlined';
 import PaymentOutlinedIcon from '@mui/icons-material/PaymentOutlined';
+import NoteIcon from '@mui/icons-material/Note';
+import BalanceIcon from '@mui/icons-material/Balance';
+import MoneyOffIcon from '@mui/icons-material/MoneyOff';
+
 
 export const mainListItems = (
   <React.Fragment>
@@ -42,6 +46,43 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Reports" />
     </ListItemButton>
+
+    <Link underline="none" color="inherit" href={`/deudores`}>
+      <ListItemButton>
+        <ListItemIcon>
+          <MoneyOffIcon />
+        </ListItemIcon>
+        <ListItemText primary="Lista de Deudores" />
+      </ListItemButton>
+    </Link>
+
+    <Link underline="none" color="inherit" href={`/saldos`}>
+      <ListItemButton>
+        <ListItemIcon>
+          <BalanceIcon />
+        </ListItemIcon>
+        <ListItemText primary="Balance de Antiguedad de Saldos" />
+      </ListItemButton>
+    </Link>
+
+    <Link underline="none" color="inherit" href={`/notaCredito`}>
+      <ListItemButton>
+        <ListItemIcon>
+          <NoteIcon />
+        </ListItemIcon>
+        <ListItemText primary="Nota Credito" />
+      </ListItemButton>
+    </Link>
+
+    <Link underline="none" color="inherit" href={`/notaDebito`}>
+      <ListItemButton>
+        <ListItemIcon>
+          <NoteIcon />
+        </ListItemIcon>
+        <ListItemText primary="Nota Debito" />
+      </ListItemButton>
+    </Link>
+
     <Link underline="none" color="inherit" href={`/visalink`}>
       <ListItemButton>
         <ListItemIcon>
@@ -50,6 +91,7 @@ export const mainListItems = (
         <ListItemText primary="Pagos Visalink" />
       </ListItemButton>
     </Link>
+
     <Link underline="none" color="inherit" href={`/recordatorios`}>
       <ListItemButton>
         <ListItemIcon>
@@ -67,6 +109,8 @@ export const mainListItems = (
       </ListItemButton>
     </Link>
   </React.Fragment>
+
+  
 );
 
 export const secondaryListItems = (
