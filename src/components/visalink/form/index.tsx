@@ -56,6 +56,7 @@ const VisalinkForm: React.FC<any> = ({ handleSubmit, formDefault }) => {
           id="outlined-basic"
           label="Monto"
           variant="outlined"
+          value={500}
           placeholder="00.00"
           type="number"
           required

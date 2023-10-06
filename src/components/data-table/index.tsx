@@ -1,5 +1,18 @@
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { ITable } from "./type";
+
+const customLocaleText = {
+  // Cambia el texto para la paginación
+  pagination: {
+    next: 'Siguiente',
+    previous: 'Anterior',
+    labelRowsPerPage: 'Filas por página:',
+    labelRowsSelect: 'Filas',
+  },
+  // Cambia el texto para la selección de columnas
+  toolbarColumns: 'Columnas',
+  // Agrega otros textos personalizados según sea necesario
+};
 
 const DataTable: React.FC<ITable> = ({ rows, columns }) => {
   return (
@@ -14,8 +27,15 @@ const DataTable: React.FC<ITable> = ({ rows, columns }) => {
               paginationModel: { page: 0, pageSize: 10 },
             },
           }}
+          slotProps={{
+            toolbar: {
+              showQuickFilter: true,
+            },
+          }}
           pageSizeOptions={[5, 10, 15]}
           hideFooterSelectedRowCount
+          slots={{ toolbar: GridToolbar }}
+          localeText={customLocaleText}
         />
       </div>
     </div>

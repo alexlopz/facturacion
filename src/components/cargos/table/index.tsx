@@ -1,7 +1,7 @@
 import { GridActionsCellItem, GridColDef } from "@mui/x-data-grid";
 import DataTable from "../../data-table";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 
 const CargosTable: React.FC<any> = ({ cargos, handlerClick }) => {
   const columns: GridColDef[] = [
@@ -13,13 +13,15 @@ const CargosTable: React.FC<any> = ({ cargos, handlerClick }) => {
     {
       field: "actions",
       type: "actions",
-      width: 10,
+      width: 100,
       getActions: (params) => [
-        <GridActionsCellItem
-          icon={<VisibilityIcon color="success" />}
-          label="Delete"
-          onClick={(e) => handlerClick(e, params.row)}
-        />,
+        <Button
+        variant="outlined"
+        color="primary"
+        size="small"
+      >
+        Ver
+      </Button>
       ],
     },
   ];
@@ -27,7 +29,12 @@ const CargosTable: React.FC<any> = ({ cargos, handlerClick }) => {
   return (
     <>
       <Box
-        sx={{ display: "flex", justifyContent: "center", alignItems: "center", mb: 2 }}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          mb: 2,
+        }}
       >
         <Typography variant="h6" gutterBottom>
           Listado de cargos aplicados
