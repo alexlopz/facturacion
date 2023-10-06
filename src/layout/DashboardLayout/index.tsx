@@ -138,7 +138,7 @@ const DashboardLayout: React.FC<any> = ({ children, title }) => {
             noWrap
             sx={{ flexGrow: 1 }}
           >
-            Hola Admin!
+            Cuentas por cobrar
           </Typography>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
