@@ -6,19 +6,19 @@ import { IRecordatorio } from "../../src/components/recordatorios-form/type";
 import VisalinkForm from "../../src/components/visalink/form";
 import DashboardLayout from "../../src/layout/DashboardLayout";
 import { getClientes } from "../../src/services/clientes";
+import { getFacturas } from "../../src/services/facturas";
 import { getRecordatorios } from "../../src/services/recordatorios";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID" },
   { field: "cliente", headerName: "Cliente" },
   { field: "factura", headerName: "Factura" },
-  { field: "metodo", headerName: "Metodo" },
-  { field: "frecuencia", headerName: "Frecuencia" },
+  { field: "monto", headerName: "Monto" },
   { field: "status", headerName: "Estado" },
-  { field: "fecha_creacion", headerName: "Fecha de Creacion" },
+  { field: "fecha_creacion", headerName: "Fecha de Creacion", width: 150 },
 ];
 
-const VisaLink: React.FC<any> = ({ clientes, recordatorios }) => {
+const VisaLink: React.FC<any> = ({ pagos }) => {
   const verDato = (formulario: IRecordatorio) => {
     console.log("formulario-rec", formulario);
   };
@@ -37,7 +37,7 @@ const VisaLink: React.FC<any> = ({ clientes, recordatorios }) => {
         <Grid item xs={12} md={8}>
           <Card variant="outlined">
             <CardContent>
-              <DataTable rows={[]} columns={[]} />
+              <DataTable rows={pagos} columns={columns} />
             </CardContent>
           </Card>
         </Grid>
@@ -47,12 +47,10 @@ const VisaLink: React.FC<any> = ({ clientes, recordatorios }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const clientes = await getClientes();
-  const recordatorios = await getRecordatorios();
+  const pagos = await getFacturas();
   return {
     props: {
-      clientes,
-      recordatorios,
+      pagos,
     },
   };
 };

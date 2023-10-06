@@ -56,10 +56,12 @@ const VisalinkForm: React.FC<any> = ({ handleSubmit, formDefault }) => {
           id="outlined-basic"
           label="Monto"
           variant="outlined"
+          value={500}
           placeholder="00.00"
           type="number"
           required
           onChange={handleChange}
+          inputProps={{ inputMode: 'numeric', pattern: '^[0-9]{1,4}(?:\.[0-9]{1,2})?$'}}
         />
       </FormControl>
       <FormControl fullWidth sx={selectStyle}>
