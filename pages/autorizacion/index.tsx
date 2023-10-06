@@ -1,4 +1,4 @@
-import { Card, CardContent, Grid } from "@mui/material";
+import { Button, Card, CardContent, Grid } from "@mui/material";
 import { GridActionsCellItem, GridColDef } from "@mui/x-data-grid";
 import { GetServerSideProps } from "next";
 import DataTable from "../../src/components/data-table";
@@ -29,11 +29,13 @@ const Autorizacion: React.FC<any> = ({ autorizaciones }) => {
       headerName: "Ver solicitud",
       width: 100,
       getActions: (params) => [
-        <GridActionsCellItem
-          icon={<VisibilityIcon />}
-          label="Delete"
-          onClick={(e) => deleteUser(e, params.row)}
-        />,
+        <Button
+          variant="outlined"
+          color="primary"
+          size="small"
+        >
+          Ver
+        </Button>
       ],
     },
   ];
