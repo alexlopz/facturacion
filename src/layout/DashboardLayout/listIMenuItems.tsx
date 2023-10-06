@@ -5,11 +5,10 @@ import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PeopleIcon from "@mui/icons-material/People";
-
+import BarChartIcon from "@mui/icons-material/BarChart";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import { Link } from "@mui/material";
 import { Home } from "@mui/icons-material";
-// import Link from "next/link";
 import LayersOutlinedIcon from '@mui/icons-material/LayersOutlined';
 import AccessAlarmOutlinedIcon from '@mui/icons-material/AccessAlarmOutlined';
 import PaymentOutlinedIcon from '@mui/icons-material/PaymentOutlined';
@@ -77,6 +76,14 @@ export const mainListItems = (
     </ListItemButton>
     </Link>
 
+    <Link underline="none" color="inherit" href={`/reportes`}>
+      <ListItemButton>
+        <ListItemIcon>
+          <BarChartIcon />
+        </ListItemIcon>
+        <ListItemText primary="Reportes" />
+      </ListItemButton>
+    </Link>
     <Link underline="none" color="inherit" href={`/visalink`}>
       <ListItemButton>
         <ListItemIcon>

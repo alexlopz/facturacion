@@ -10,7 +10,7 @@ import {
 import React, { useState } from "react";
 import { ICargo } from "./type";
 
-const CargosForm: React.FC<any> = ({ handleSubmit, clientes, formDefault }) => {
+const VisalinkForm: React.FC<any> = ({ handleSubmit, formDefault }) => {
   const [formulario, setFormulario] = useState<ICargo>(formDefault);
 
   const handleSelectedChange = (event: SelectChangeEvent) => {
@@ -29,21 +29,40 @@ const CargosForm: React.FC<any> = ({ handleSubmit, clientes, formDefault }) => {
   return (
     <form onSubmit={handleSubmit(formulario)}>
       <FormControl fullWidth sx={selectStyle}>
-        <InputLabel id="demo-simple-select-label">Cliente</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="cliente"
-          value={formulario?.cliente}
-          label="Cliente"
-          name="cliente"
-          onChange={handleSelectedChange}
-        >
-          {clientes.map((cliente: any, index: number) => (
-            <MenuItem key={index} value={cliente.id}>
-              {cliente.nombre}
-            </MenuItem>
-          ))}
-        </Select>
+        <TextField
+          id="outlined-basic"
+          label="Nombre"
+          name={"nombre"}
+          variant="outlined"
+          placeholder="Identificador del link"
+          type="text"
+          required
+          onChange={handleChange}
+        />
+      </FormControl>
+      <FormControl fullWidth sx={selectStyle}>
+        <TextField
+          id="outlined-basic"
+          label="Descripcion"
+          variant="outlined"
+          placeholder="Descripcion del pago"
+          type="text"
+          required
+          onChange={handleChange}
+        />
+      </FormControl>
+      <FormControl fullWidth sx={selectStyle}>
+        <TextField
+          id="outlined-basic"
+          label="Monto"
+          variant="outlined"
+          value={500}
+          placeholder="00.00"
+          type="number"
+          required
+          onChange={handleChange}
+          inputProps={{ inputMode: 'numeric', pattern: '^[0-9]{1,4}(?:\.[0-9]{1,2})?$'}}
+        />
       </FormControl>
       <FormControl fullWidth sx={selectStyle}>
         <InputLabel id="demo-simple-select-label">Factura</InputLabel>
@@ -53,22 +72,9 @@ const CargosForm: React.FC<any> = ({ handleSubmit, clientes, formDefault }) => {
           value={formulario?.factura}
           label="Factura"
           name="factura"
+          placeholder="Factura"
           onChange={handleSelectedChange}
-        >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl fullWidth sx={selectStyle}>
-        <InputLabel id="demo-simple-select-label">Concepto</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="concepto"
-          value={formulario?.concepto}
-          label="Concepto"
-          name="concepto"
-          onChange={handleSelectedChange}
+          required
         >
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
@@ -77,10 +83,10 @@ const CargosForm: React.FC<any> = ({ handleSubmit, clientes, formDefault }) => {
       </FormControl>
       <FormControl fullWidth sx={selectStyle}>
         <Button type="submit" variant="contained" color="success">
-          Primary
+          Guardar
         </Button>
       </FormControl>
     </form>
   );
 };
-export default CargosForm;
+export default VisalinkForm;
