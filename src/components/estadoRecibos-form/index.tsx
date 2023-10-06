@@ -74,28 +74,30 @@ const EstadoReciboForm: React.FC<any> = ({ handleSubmit }) => {
         </Select>
       </FormControl>
       <FormControl fullWidth sx={selectStyle}>
-        <InputLabel id="demo-simple-select-label">Fecha Inicial</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="fechaInicial"
-          value={formulario?.fechaInicial}
-          label="Fecha Inicial"
-          name="fechaInicial"
-          onChange={handleSelectedChange}
-        >
-        </Select>
+      <TextField
+          id="outlined-basic"
+          label="Fecha Inicio"
+          variant="outlined"
+          type="date"
+          required
+          InputLabelProps={{
+            shrink: true,
+          }}
+          onChange={handleChange}
+        />
       </FormControl>
       <FormControl fullWidth sx={selectStyle}>
-        <InputLabel id="demo-simple-select-label">Fecha Final</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="fechaFinal"
-          value={formulario?.fechaFinal}
+      <TextField
+          id="outlined-basic"
           label="Fecha Final"
-          name="fechaFinal"
-          onChange={handleSelectedChange}
-        >
-        </Select>
+          variant="outlined"
+          type="date"
+          required
+          InputLabelProps={{
+            shrink: true,
+          }}
+          onChange={handleChange}
+        />
       </FormControl>
       <TableContainer sx={selectStyle}>
 <Table>

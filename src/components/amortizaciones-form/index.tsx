@@ -1,6 +1,12 @@
 import {
   Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   FormControl,
+  Grid,
   InputLabel,
   MenuItem,
   Select,
@@ -16,11 +22,7 @@ import React, { useState } from "react";
 import { IAmortizaciones } from "./type";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-import Box from '@mui/material/Box';
-
-
+import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 
 const formDefault: IAmortizaciones = {
   codCliente: "",
@@ -43,30 +45,25 @@ const AmortizacionesForm: React.FC<any> = ({ handleSubmit }) => {
     setFormulario({ ...formulario, [event.target.name]: event.target.value });
   };
   console.log("formulario", formulario);
-
-  const selectStyle = {
-    mb: 2,
+  const [open, setOpen] = React.useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
   };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
 
   return (
     <form onSubmit={handleSubmit(formulario)}>
-      <FormControl fullWidth sx={selectStyle}>
-        <InputLabel id="demo-simple-select-label">CodCliente</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="codCliente"
-          value={formulario?.codCliente}
-          label="codigo Cliente"
-          name="codCliente"
-          onChange={handleSelectedChange}
-        >
-          <MenuItem value={10}>101230</MenuItem>
-          <MenuItem value={20}>101231</MenuItem>
-          <MenuItem value={30}>101232</MenuItem>
-        </Select>
-      </FormControl>
-      <TextField fullWidth sx={selectStyle} label="Nombre Cliente" variant="outlined" disabled id="outlined-disabled"/>
-      <FormControl fullWidth sx={selectStyle}>
+      
+      <Grid container columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
+        <Grid item xs={6}>
+        <TextField required sx={{ mb: 2}} label="Codigo" variant="outlined" id="outlined-disabled"/>
+        </Grid>
+        <Grid item xs={6}>
+        <FormControl fullWidth sx={{ mb: 2, minWidth: 120}} required>
         <InputLabel id="demo-simple-select-label">Factura</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -75,39 +72,95 @@ const AmortizacionesForm: React.FC<any> = ({ handleSubmit }) => {
           label="Factura"
           name="codFactura"
           onChange={handleSelectedChange}
+          margin="none"
+          autoWidth
         >
           <MenuItem value={10}>12457893</MenuItem>
           <MenuItem value={20}>33654788</MenuItem>
           <MenuItem value={30}>45487952</MenuItem>
         </Select>
       </FormControl>
-      <TextField fullWidth sx={selectStyle} label="Saldo Pendiente" variant="outlined" disabled id="outlined-disabled"/>
-      <TextField fullWidth sx={selectStyle} label="Fecha Limite de Pago" variant="outlined" disabled id="outlined-disabled"/>
-      <TextField fullWidth sx={selectStyle} label="Intereses Generados" variant="outlined" disabled id="outlined-disabled"/>
-      <TextField fullWidth sx={selectStyle} label="Total a Pagar" variant="outlined" disabled id="outlined-disabled"/>
-      <TableContainer sx={selectStyle}>
-<Table>
-  <TableHead>
-    <TableRow>
-      <TableCell align="center">
-      <FormControl>
-        <Button type="submit" variant="contained" color="success" startIcon={<CheckCircleIcon/>}>
+        </Grid>
+      </Grid>   
+      
+      
+      <TextField helperText="Nombre del Cliente" fullWidth sx={{ mb: 1,}} label="" variant="outlined" disabled id="outlined-disabled"/>
+      
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
+        <Grid item xs={6}>
+        <TextField helperText="Saldo Pendiente" fullWidth sx={{ mb: 1,}} label="Q150,000.00" variant="outlined" disabled id="outlined-disabled"/>
+        </Grid>
+        <Grid item xs={6}>
+        <TextField helperText="Fecha Limite" fullWidth sx={{ mb: 1,}} label="DD/MM/AA" variant="outlined" disabled id="outlined-disabled"/>
+        </Grid>
+      </Grid>
+
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
+        <Grid item xs={6}>
+        <TextField helperText="Intereses" fullWidth sx={{ mb: 1,}} label="Q50.00" variant="outlined" disabled id="outlined-disabled"/>
+        </Grid>
+        <Grid item xs={6}>
+        <TextField helperText="Total a Pagar" fullWidth sx={{ mb: 1,}} label="Q150,050.00" variant="outlined" disabled id="outlined-disabled"/>
+        </Grid>
+      </Grid> 
+
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
+        <Grid item xs={6}>
+        <center><Button onClick={handleClickOpen} type="submit" variant="contained" color="success" startIcon={<CheckCircleIcon/>}>
           ACEPTAR
         </Button>
-      </FormControl>
-      </TableCell>
-      <TableCell align="center">
-      <FormControl>
-        <Button type="submit" variant="contained" color="error" startIcon={<DeleteRoundedIcon/>}>
-          LIMPIAR
+        </center>
+        </Grid>
+        <Grid item xs={6}>
+        <center><Button  type="button" variant="contained" color="error" startIcon={<DeleteRoundedIcon/>}>
+        LIMPIAR
         </Button>
+        </center>
+        </Grid>
+      </Grid> 
+
+      <Dialog open={open} onClose={handleClose} fullWidth>
+        <DialogTitle>Amortizaciones</DialogTitle>
+        <DialogContent dividers>
+        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
+        <Grid item xs={6}>
+        <TextField fullWidth required sx={{ mb: 2}} label="# Recibo" variant="outlined" id="outlined-disabled"/>
+        </Grid>
+        <Grid item xs={6}>
+        <FormControl fullWidth sx={{ mb: 2, minWidth: 120}} required>
+        <InputLabel id="demo-simple-select-label">Metodo Pago</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          label="Factura"
+          name="codFactura"
+          onChange={handleSelectedChange}
+          margin="none"
+          autoWidth        >
+          <MenuItem value={10}>Transferencia</MenuItem>
+          <MenuItem value={20}>Efectivo</MenuItem>
+        </Select>
       </FormControl>
-      </TableCell>
-    </TableRow>
-  </TableHead>
-</Table>
-      </TableContainer> 
+        </Grid>
+      </Grid>
+
+      <TextField helperText="Descripción" fullWidth sx={{ mb: 1,}} label="Descripción" variant="outlined" id="outlined-disabled" required/>
+      
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
+        <Grid item xs={6}>
+        <TextField helperText="Numero de Transferencia" fullWidth sx={{ mb: 1,}} label="#" variant="outlined" id="outlined-disabled"/>
+        </Grid>
+        <Grid item xs={6}>
+        <TextField helperText="Monto" fullWidth sx={{ mb: 1,}} label="Q" variant="outlined" id="outlined-disabled" required/>
+        </Grid>
+      </Grid>       
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} variant="contained" color="error" startIcon={<CancelRoundedIcon/>} sx={{maxWidth: 115}}>CANCELAR</Button>
+          <Button variant="contained" color="success" startIcon={<CheckCircleIcon/>}>GRABAR</Button>
+        </DialogActions>
+      </Dialog>
     </form>
+    
   );
 };
 
