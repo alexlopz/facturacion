@@ -2,7 +2,6 @@ import {
   Autocomplete,
   Box,
   Button,
-  Divider,
   FormControl,
   FormHelperText,
   Grid,
@@ -16,7 +15,6 @@ import {
 import React, { useState } from "react";
 import { ICargo } from "./type";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
-import AddIcon from "@mui/icons-material/Add";
 
 const CargosForm: React.FC<any> = ({
   handleSubmit,
@@ -46,7 +44,14 @@ const CargosForm: React.FC<any> = ({
   return (
     <form onSubmit={handleSubmit(formulario)}>
       <Box
-        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "whitesmoke",
+          margin: '-16px -16px 0 -16px',
+          padding: '5px'
+        }}
       >
         <Typography variant="h6" gutterBottom>
           Agregar cargo a factura
@@ -91,9 +96,9 @@ const CargosForm: React.FC<any> = ({
               name="concepto"
               onChange={handleSelectedChange}
             >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              <MenuItem value={'cheque'}>Cheque rechazado</MenuItem>
+              <MenuItem value={'legales'}>Servicios legales</MenuItem>
+              <MenuItem value={'servicios adicionales'}>Servicios adicionales</MenuItem>
             </Select>
           </FormControl>
         </Grid>
