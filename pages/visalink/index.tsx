@@ -2,12 +2,10 @@ import { Card, CardContent, Grid } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 import { GetServerSideProps } from "next";
 import DataTable from "../../src/components/data-table";
-import { IRecordatorio } from "../../src/components/recordatorios-form/type";
+import { IRecordatorio } from "../../src/components/recordatorios/type";
 import VisalinkForm from "../../src/components/visalink/form";
 import DashboardLayout from "../../src/layout/DashboardLayout";
-import { getClientes } from "../../src/services/clientes";
 import { getFacturas } from "../../src/services/facturas";
-import { getRecordatorios } from "../../src/services/recordatorios";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID" },
@@ -30,7 +28,7 @@ const VisaLink: React.FC<any> = ({ pagos }) => {
         <Grid item xs={12} md={4}>
           <Card variant="outlined" sx={styleTable}>
             <CardContent>
-              <VisalinkForm handleSubmit={() => console.log('click')}/>
+              <VisalinkForm handleSubmit={() => console.log('click')} facturas={pagos}/>
             </CardContent>
           </Card>
         </Grid>

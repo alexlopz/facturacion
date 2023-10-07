@@ -1,12 +1,11 @@
 import { Button, Card, CardContent, Grid } from "@mui/material";
-import { GridActionsCellItem, GridColDef } from "@mui/x-data-grid";
+import { GridColDef } from "@mui/x-data-grid";
 import { GetServerSideProps } from "next";
 import DataTable from "../../src/components/data-table";
-import { IRecordatorio } from "../../src/components/recordatorios-form/type";
+import { IRecordatorio } from "../../src/components/recordatorios/type";
 import FiltroReportes from "../../src/components/reportes";
 import DashboardLayout from "../../src/layout/DashboardLayout";
 import { getFacturas } from "../../src/services/facturas";
-import VisibilityIcon from "@mui/icons-material/Visibility";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 10 },

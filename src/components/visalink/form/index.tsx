@@ -1,17 +1,24 @@
 import {
+  Autocomplete,
+  Box,
   Button,
   FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
+  Grid,
   SelectChangeEvent,
   TextField,
+  Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import { ICargo } from "./type";
+import { regex } from "../../../utilities/regex";
+import { IMonto } from "./type";
 
-const VisalinkForm: React.FC<any> = ({ handleSubmit, formDefault }) => {
-  const [formulario, setFormulario] = useState<ICargo>(formDefault);
+const VisalinkForm: React.FC<any> = ({
+  handleSubmit,
+  formDefault,
+  facturas,
+}) => {
+  const [formulario, setFormulario] = useState<IMonto>(formDefault);
+  const [errors, setErrors] = useState<{}>({ monto: undefined });
 
   const handleSelectedChange = (event: SelectChangeEvent) => {
     setFormulario({ ...formulario, [event.target.name]: event.target.value });
@@ -19,6 +26,17 @@ const VisalinkForm: React.FC<any> = ({ handleSubmit, formDefault }) => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormulario({ ...formulario, [event.target.name]: event.target.value });
+  };
+
+  const handleChangeNumeric = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const inputNumber = event.target.value;
+    const validate = regex.NUMERIC.test(inputNumber);
+    if (!validate) {
+      setErrors({ monto: "Ingresa un número válido (mayor a cero)" });
+    } else {
+      setErrors({ monto: undefined });
+      handleChange(event);
+    }
   };
   console.log("formulario", formulario);
 
@@ -28,18 +46,20 @@ const VisalinkForm: React.FC<any> = ({ handleSubmit, formDefault }) => {
 
   return (
     <form onSubmit={handleSubmit(formulario)}>
-      <FormControl fullWidth sx={selectStyle}>
-        <TextField
-          id="outlined-basic"
-          label="Nombre"
-          name={"nombre"}
-          variant="outlined"
-          placeholder="Identificador del link"
-          type="text"
-          required
-          onChange={handleChange}
-        />
-      </FormControl>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "whitesmoke",
+          margin: "-16px -16px 16px -16px",
+          padding: "5px",
+        }}
+      >
+        <Typography variant="h6" gutterBottom>
+          Crear nuevo link de pago
+        </Typography>
+      </Box>
       <FormControl fullWidth sx={selectStyle}>
         <TextField
           id="outlined-basic"
@@ -51,36 +71,38 @@ const VisalinkForm: React.FC<any> = ({ handleSubmit, formDefault }) => {
           onChange={handleChange}
         />
       </FormControl>
-      <FormControl fullWidth sx={selectStyle}>
-        <TextField
-          id="outlined-basic"
-          label="Monto"
-          variant="outlined"
-          value={500}
-          placeholder="00.00"
-          type="number"
-          required
-          onChange={handleChange}
-          inputProps={{ inputMode: 'numeric', pattern: '^[0-9]{1,4}(?:\.[0-9]{1,2})?$'}}
-        />
-      </FormControl>
-      <FormControl fullWidth sx={selectStyle}>
-        <InputLabel id="demo-simple-select-label">Factura</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="factura"
-          value={formulario?.factura}
-          label="Factura"
-          name="factura"
-          placeholder="Factura"
-          onChange={handleSelectedChange}
-          required
-        >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-      </FormControl>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={12} md={12} lg={6}>
+          <FormControl fullWidth sx={selectStyle}>
+            <TextField
+              id="outlined-basic"
+              label="Monto"
+              variant="outlined"
+              value={formulario?.monto}
+              placeholder="00.00"
+              type="number"
+              required
+              onChange={handleChangeNumeric}
+              error={errors?.monto != undefined}
+              helperText={errors?.monto}
+            />
+          </FormControl>
+        </Grid>
+        <Grid item xs={12} sm={12} md={12} lg={6}>
+          <FormControl fullWidth sx={selectStyle}>
+            <Autocomplete
+              disablePortal
+              id="factura"
+              options={facturas}
+              getOptionLabel={(option: any) => option.factura}
+              renderInput={(params) => (
+                <TextField {...params} name="factura" label="Factura" />
+              )}
+            />
+          </FormControl>
+        </Grid>
+      </Grid>
+
       <FormControl fullWidth sx={selectStyle}>
         <Button type="submit" variant="contained" color="success">
           Guardar
