@@ -152,7 +152,7 @@ export const mainListItems = (
         <ListItemIcon>
           <BalanceIcon />
         </ListItemIcon>
-        <ListItemText primary="Balance de Antiguedad de Saldos" />
+        <ListItemText primary="Antiguedad de Saldos" />
       </ListItemButton>
     </Link>
 

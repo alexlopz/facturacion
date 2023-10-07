@@ -10,6 +10,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
  import { Isaldos } from "../../src/components/saldo-forms/type";
  import SaldosForms from "../../src/components/saldo-forms";
 import { useState } from "react";
+import { getSaldos } from "../../src/services/saldos";
 
 
 
@@ -23,7 +24,7 @@ const formDefault: Isaldos= {
   meses:""
 };
 
-const Saldos: React.FC<any> = ({ cargos, clientes }) => {
+const Saldos: React.FC<any> = ({ saldos, clientes }) => {
   const [formulario, setFormulario] = useState<Isaldos>(formDefault);
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 10 },
@@ -73,7 +74,7 @@ const Saldos: React.FC<any> = ({ cargos, clientes }) => {
         <Grid item xs={12} md={8}>
           <Card variant="outlined" sx={styleTable}>
             <CardContent>
-              <DataTable rows={cargos} columns={columns} />
+              <DataTable rows={saldos} columns={columns} />
             </CardContent>
           </Card>
         </Grid>
@@ -84,10 +85,10 @@ const Saldos: React.FC<any> = ({ cargos, clientes }) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const clientes = await getClientes();
-  const cargos = await getCargos();
+  const saldos = await getSaldos();
   return {
     props: {
-      cargos,
+      saldos,
       clientes,
     },
   };
