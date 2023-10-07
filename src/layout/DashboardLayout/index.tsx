@@ -18,6 +18,7 @@ import { mainListItems, secondaryListItems } from "./listIMenuItems";
 import React from "react";
 import { AccountCircle } from "@mui/icons-material";
 import { Card } from "@mui/material";
+import IconFerreteria from "../../components/svgs/icon-ferreteria";
 
 function Copyright(props: any) {
   return (
@@ -106,8 +107,10 @@ const darkTheme = createTheme({
 
 const DashboardLayout: React.FC<any> = ({ children, title }) => {
   const [open, setOpen] = React.useState(true);
+  const [showIcon, setShowIcon] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
+    setShowIcon(!showIcon);
   };
 
   return (
@@ -131,14 +134,15 @@ const DashboardLayout: React.FC<any> = ({ children, title }) => {
           >
             <MenuIcon />
           </IconButton>
+          <IconFerreteria />
           <Typography
             component="h1"
             variant="h6"
             color="inherit"
             noWrap
-            sx={{ flexGrow: 1 }}
+            sx={{ flexGrow: 1, marginLeft: "10px" }}
           >
-            Sistema de Cuentas por Cobrar
+            Ferreteria - Sistema de Cuentas por Cobrar
           </Typography>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
@@ -168,7 +172,7 @@ const DashboardLayout: React.FC<any> = ({ children, title }) => {
           <List component="nav">
             {mainListItems}
             <Divider sx={{ my: 1 }} />
-            {secondaryListItems}
+            {/* {secondaryListItems} */}
           </List>
         </Drawer>
       </ThemeProvider>
@@ -187,7 +191,7 @@ const DashboardLayout: React.FC<any> = ({ children, title }) => {
         <Toolbar />
         <Card
           sx={{
-            height: "100vh",
+            height: "90vh",
             border: "1px solid #dbdbdb",
             borderRadius: 2,
             bgcolor: "white",

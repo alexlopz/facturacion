@@ -1,18 +1,15 @@
 import { Card, CardContent, Grid } from "@mui/material";
-import { GridActionsCellItem, GridColDef } from "@mui/x-data-grid";
 import { GetServerSideProps } from "next";
 import CargosForm from "../../src/components/cargos/form";
-import DataTable from "../../src/components/data-table";
 import DashboardLayout from "../../src/layout/DashboardLayout";
 import { getCargos } from "../../src/services/cargos";
 import { getClientes } from "../../src/services/clientes";
-import VisibilityIcon from "@mui/icons-material/Visibility";
 import { ICargo } from "../../src/components/cargos/form/type";
 import { useState } from "react";
 import CargosTable from "../../src/components/cargos/table";
 import { getFacturas } from "../../src/services/facturas";
 
-const formDefault: ICargo = {
+const formDefault: ICargo= {
   cliente: "",
   factura: "",
   concepto: "",
@@ -20,7 +17,6 @@ const formDefault: ICargo = {
 
 const Cargos: React.FC<any> = ({ cargos, clientes, facturas }) => {
   const [formulario, setFormulario] = useState<ICargo>(formDefault);
-
 
   const deleteUser = (
     e: React.MouseEvent<HTMLButtonElement>,
@@ -32,7 +28,7 @@ const Cargos: React.FC<any> = ({ cargos, clientes, facturas }) => {
 
   const styleTable = { height: "100%" };
   return (
-    <DashboardLayout title={"Cargos"}>
+    <DashboardLayout title={"CARGOS"}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={4}>
           <Card variant="outlined" sx={styleTable}>
