@@ -1,20 +1,52 @@
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { IconButton, Tooltip } from "@mui/material";
+import { Box } from "@mui/system";
+import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
+import LocalPrintshopOutlinedIcon from "@mui/icons-material/LocalPrintshopOutlined";
+
+import {
+  DataGrid,
+  GridToolbarContainer,
+  GridToolbarQuickFilter,
+  useGridApiContext,
+} from "@mui/x-data-grid";
 import { ITable } from "./type";
 
-const customLocaleText = {
-  // Cambia el texto para la paginación
-  pagination: {
-    next: 'Siguiente',
-    previous: 'Anterior',
-    labelRowsPerPage: 'Filas por página:',
-    labelRowsSelect: 'Filas',
-  },
-  // Cambia el texto para la selección de columnas
-  toolbarColumns: 'Columnas',
-  // Agrega otros textos personalizados según sea necesario
-};
-
 const DataTable: React.FC<ITable> = ({ rows, columns }) => {
+  const CustomToolbar = () => {
+    const apiRef = useGridApiContext();
+
+    return (
+      <GridToolbarContainer
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          margin: "10px 5px",
+        }}
+      >
+        <Box>
+          <Tooltip title="Descargar CSV">
+            <IconButton
+              aria-label="delete"
+              size="large"
+              onClick={() => apiRef.current.exportDataAsCsv()}
+            >
+              <FileDownloadOutlinedIcon fontSize="inherit" />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Imprimir">
+            <IconButton
+              aria-label="print"
+              size="large"
+              onClick={() => apiRef.current.exportDataAsPrint()}
+            >
+              <LocalPrintshopOutlinedIcon fontSize="inherit" />
+            </IconButton>
+          </Tooltip>
+        </Box>
+        <GridToolbarQuickFilter />
+      </GridToolbarContainer>
+    );
+  };
   return (
     <div style={{ width: "100%" }}>
       <div style={{ width: "100%" }}>
@@ -27,15 +59,12 @@ const DataTable: React.FC<ITable> = ({ rows, columns }) => {
               paginationModel: { page: 0, pageSize: 10 },
             },
           }}
-          slotProps={{
-            toolbar: {
-              showQuickFilter: true,
-            },
-          }}
+          disableColumnFilter
+          disableColumnSelector
+          disableDensitySelector
           pageSizeOptions={[5, 10, 15]}
           hideFooterSelectedRowCount
-          slots={{ toolbar: GridToolbar }}
-          localeText={customLocaleText}
+          slots={{ toolbar: CustomToolbar }}
         />
       </div>
     </div>

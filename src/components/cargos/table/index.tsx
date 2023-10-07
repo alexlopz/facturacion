@@ -1,6 +1,5 @@
-import { GridActionsCellItem, GridColDef } from "@mui/x-data-grid";
+import { GridColDef } from "@mui/x-data-grid";
 import DataTable from "../../data-table";
-import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Box, Button, Typography } from "@mui/material";
 
 const CargosTable: React.FC<any> = ({ cargos, handlerClick }) => {
@@ -10,6 +9,7 @@ const CargosTable: React.FC<any> = ({ cargos, handlerClick }) => {
     { field: "factura", headerName: "No. Factura", width: 100 },
     { field: "concepto", headerName: "Concepto", width: 200 },
     { field: "monto", headerName: "Monto" },
+    { field: "fecha_creacion", headerName: "Fecha creación",width: 150 },
     {
       field: "actions",
       type: "actions",
@@ -33,7 +33,9 @@ const CargosTable: React.FC<any> = ({ cargos, handlerClick }) => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          mb: 2,
+          backgroundColor: "whitesmoke",
+          margin: '-16px -16px 16px -16px',
+          padding: '5px'
         }}
       >
         <Typography variant="h6" gutterBottom>

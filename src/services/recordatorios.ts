@@ -1,4 +1,4 @@
-import { IRecordatorio } from "../components/recordatorios-form/type";
+import { IRecordatorio } from "../components/recordatorios/type";
 
 export const getRecordatorios = async (): Promise<IRecordatorio[]> => {
   const url = "http://localhost:3000/api/recordatorios";
