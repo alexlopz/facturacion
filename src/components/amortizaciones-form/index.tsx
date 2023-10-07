@@ -60,7 +60,13 @@ const AmortizacionesForm: React.FC<any> = ({ handleSubmit }) => {
 
       <Grid container columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
         <Grid item xs={6}>
-          <TextField required sx={{ mb: 2 }} label="Codigo" variant="outlined" id="outlined-disabled" />
+          <TextField 
+          required 
+          sx={{ mb: 2 }} 
+          label="Codigo Cliente" 
+          variant="outlined" 
+          id="outlined-disabled" 
+          />
         </Grid>
         <Grid item xs={6}>
           <FormControl fullWidth sx={{ mb: 2, minWidth: 120 }} required>
@@ -84,23 +90,67 @@ const AmortizacionesForm: React.FC<any> = ({ handleSubmit }) => {
       </Grid>
 
 
-      <TextField helperText="Nombre del Cliente" fullWidth sx={{ mb: 1, }} label="Ejemplo" type="text" variant="outlined" disabled value={"Example"} id="outlined-basic" />
+      <TextField
+        helperText=""
+        fullWidth sx={{ mb: 1, }}
+        label="Nombre Cliente"
+        type="text" variant="outlined"
+        disabled
+        value={"Example"}
+        id="outlined-basic"
+      />
 
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
         <Grid item xs={6}>
-          <TextField helperText="Saldo Pendiente" fullWidth sx={{ mb: 1, }} label="Q150,000.00" variant="outlined" disabled id="outlined-disabled" />
+          <TextField 
+            helperText=""
+            fullWidth
+            sx={{ mb: 1, }}
+            label="Saldo Pendiente"
+            value={"Q50,000.00"}
+            type="text"
+            variant="outlined"
+            disabled
+            id="outlined-basic"
+          />
         </Grid>
         <Grid item xs={6}>
-          <TextField helperText="Fecha Limite" fullWidth sx={{ mb: 1, }} label="DD/MM/AA" variant="outlined" disabled id="outlined-disabled" />
+          <TextField
+            helperText=""
+            fullWidth
+            sx={{ mb: 1, }}
+            label="Fecha Limite"
+            type="text"
+            value="DD/MM/AA" 
+            variant="outlined" 
+            disabled id="outlined-basic" 
+            />
         </Grid>
       </Grid>
 
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
         <Grid item xs={6}>
-          <TextField helperText="Intereses" fullWidth sx={{ mb: 1, }} label="Q50.00" variant="outlined" disabled id="outlined-disabled" />
+          <TextField 
+          helperText="" 
+          fullWidth
+          value={"Q1,000.00"} 
+          sx={{ mb: 1, }} 
+          label="Intereses" 
+          variant="outlined"
+          type="text"
+          disabled 
+          id="outlined-basic" />
         </Grid>
         <Grid item xs={6}>
-          <TextField helperText="Total a Pagar" fullWidth sx={{ mb: 1, }} label="Q150,050.00" variant="outlined" disabled id="outlined-disabled" />
+          <TextField 
+          helperText="" 
+          fullWidth 
+          sx={{ mb: 1, }}
+          label="Total a Pagar"
+          value="51,000.00" 
+          variant="outlined" 
+          disabled 
+          id="outlined-basic" />
         </Grid>
       </Grid>
 
@@ -124,7 +174,14 @@ const AmortizacionesForm: React.FC<any> = ({ handleSubmit }) => {
         <DialogContent dividers>
           <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
             <Grid item xs={6}>
-              <TextField fullWidth required sx={{ mb: 2 }} label="# Recibo" variant="outlined" id="outlined-disabled" />
+              <TextField 
+              fullWidth 
+              required 
+              sx={{ mb: 2 }} 
+              label="# Recibo" 
+              variant="outlined" 
+              id="outlined-disabled" 
+              />
             </Grid>
             <Grid item xs={6}>
               <FormControl fullWidth sx={{ mb: 2, minWidth: 120 }} required>
@@ -143,14 +200,38 @@ const AmortizacionesForm: React.FC<any> = ({ handleSubmit }) => {
             </Grid>
           </Grid>
 
-          <TextField helperText="Descripción" fullWidth sx={{ mb: 1, }} label="Descripción" variant="outlined" id="outlined-disabled" required />
-
-          <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
+          <TextField
+            helperText="Maximo de 150 caracteres"
+            fullWidth sx={{ mb: 2, }}
+            label="Descripción"
+            variant="outlined"
+            id="outlined-disabled"
+            required
+          />
+          <Grid
+            container
+            rowSpacing={1}
+            columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
             <Grid item xs={6}>
-              <TextField helperText="Numero de Transferencia" fullWidth sx={{ mb: 1, }} label="#" variant="outlined" id="outlined-disabled" />
+              <TextField 
+              helperText="" 
+              fullWidth sx={{ mb: 1, }}
+              required 
+              label="Numero de Transferencia" 
+              variant="outlined" 
+              id="outlined-disabled" />
             </Grid>
             <Grid item xs={6}>
-              <TextField helperText="Monto" fullWidth sx={{ mb: 1, }} label="Q" variant="outlined" id="outlined-disabled" required />
+              <TextField 
+              helperText="" 
+              fullWidth 
+              sx={{ mb: 1, }} 
+              label="Monto"
+              type="text"
+              variant="outlined" 
+              id="outlined-disabled" 
+              required 
+              />
             </Grid>
           </Grid>
         </DialogContent>

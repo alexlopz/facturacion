@@ -62,20 +62,14 @@ const rows: any[] = [
 ];
 
 const estadorecibo: React.FC<any> = (props) => {
-  const styleTable = { bgcolor: "#f5f5f5" };
+  const styleTable = { height: "100%"};
   return (
     <DashboardLayout title={"Estado Recibos"}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={4}>
-          <Card variant="outlined" sx={styleTable}>
+      <Grid container spacing={4} justifyContent={"center"} alignContent={"center"} alignItems={"center"}>
+        <Grid item xs={12} md={12} justifyContent={"center"} alignContent={"center"} alignItems={"center"}>
+          <Card variant="outlined" >
             <CardContent>
               <EstadoReciboForm handleSubmit={(e: any) => console.log("eee", e)} />
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12} md={8}>
-          <Card variant="outlined" sx={styleTable}>
-            <CardContent>
               <DataTable rows={rows} columns={columns}/>
             </CardContent>
           </Card>
