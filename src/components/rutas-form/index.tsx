@@ -11,11 +11,11 @@ import {
     Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import { IConvenio } from "./type";
+import { IRuta } from "./type";
 import Autocomplete from '@mui/material/Autocomplete';
 
 
-const ConveniosForm: React.FC<any> = ({ handleSubmit, clientes, formDefault }) => {
+const RutasForm: React.FC<any> = ({ handleSubmit, empleados,clientes, formDefault }) => {
     const [formulario, setFormulario] = useState<any>(formDefault);
 
     const handleSelectedChange = (event: SelectChangeEvent) => {
@@ -29,26 +29,6 @@ const ConveniosForm: React.FC<any> = ({ handleSubmit, clientes, formDefault }) =
 
     const selectStyle = {
         mb: 2,
-        
-    };
-    const selectStyle2={
-        mb: 2,
-        width: 275,
-
-    };
-
-    const selectStyle3={
-        mb: 2,
-        width: 160,
-
-    };
-    const selectStyleBtn={
-        mb: 2,
-        width: 160,
-        justifyContent:"center",
-        
-
-
     };
 
     return (
@@ -57,18 +37,17 @@ const ConveniosForm: React.FC<any> = ({ handleSubmit, clientes, formDefault }) =
                 sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
             >
                 <Typography variant="h6" gutterBottom>
-                    Seleccion de Cuenta
+                    Selección de Cobrador
                 </Typography>
             </Box>
-
             <FormControl fullWidth sx={{ ...selectStyle, mt: 2 }}>
                 <Autocomplete
                     disablePortal
                     id="nombre"
-                    options={clientes}
+                    options={empleados}
                     getOptionLabel={(option: any) => option.nombre}
                     renderInput={(params) => (
-                        <TextField {...params} name="cliente" label="Cliente" />
+                        <TextField {...params} name="cliente" label="Cobrador" />
                     )}
                 />
                 <FormHelperText>
@@ -78,11 +57,12 @@ const ConveniosForm: React.FC<any> = ({ handleSubmit, clientes, formDefault }) =
 
             
 
+
             <Box
                 sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
             >
                 <Typography variant="h6" gutterBottom>
-                    Facturas Incluidas en Convenio
+                    Facturas Cargadas a Ruta
                 </Typography>
             </Box>
             <FormControl fullWidth sx={selectStyle}>
@@ -95,41 +75,9 @@ const ConveniosForm: React.FC<any> = ({ handleSubmit, clientes, formDefault }) =
                 />
             </FormControl>
 
-            
-            <Box
-                sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
-            >
-                <Typography variant="h6" gutterBottom>
-                    Selección de Plazo
-                </Typography>
-            </Box>
-            <FormControl fullWidth sx={selectStyle3}>
-                <InputLabel id="demo-simple-select-label">Plazo</InputLabel>
-                <Select
-                    labelId="demo-simple-select-label"
-                    id="concepto"
-                    value={formulario?.concepto}
-                    label="Concepto"
-                    name="concepto"
-                    onChange={handleSelectedChange}
-                >
-                    <MenuItem value={10}>30 Días</MenuItem>
-                    <MenuItem value={20}>60 Días</MenuItem>
-                    <MenuItem value={30}>90 Días</MenuItem>
-                </Select>
-            </FormControl>
 
-            <Box 
-            sx={{display:"flex",justifyContent:"flex-end", width:"100%", mt:"20px"}}>
-                <FormControl fullWidth sx={selectStyleBtn}>
-                <Button type="submit" variant="contained" color="success">
-                    Enviar Solicitud
-                </Button>
-            </FormControl>
-
-            </Box>
             
         </form>
     );
 };
-export default ConveniosForm;
+export default RutasForm;

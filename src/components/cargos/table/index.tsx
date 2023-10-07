@@ -16,12 +16,12 @@ const CargosTable: React.FC<any> = ({ cargos, handlerClick }) => {
       width: 100,
       getActions: (params) => [
         <Button
-        variant="outlined"
-        color="primary"
-        size="small"
-      >
-        Ver
-      </Button>
+          variant="outlined"
+          color="primary"
+          size="small"
+        >
+          Ver
+        </Button>
       ],
     },
   ];

@@ -40,7 +40,7 @@ export const mainListItems = (
       <ListItemText primary="Customers" />
     </ListItemButton>
 
-    <Link underline="none" color="inherit" href={`/solicitud`}>
+    <Link underline="none" color="inherit" href={`/Rutas`}>
     <ListItemButton>
       <ListItemIcon>
         <LocalShippingIcon />

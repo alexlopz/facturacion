@@ -1,10 +1,8 @@
 export interface ISolicitud {
-    id?: string;
-    factura?: string;
-    articulo?: string;
-    cantidad?: string;
-    descripcion?: string;
-    precio_unidad?: string;
-    subtotal?: string;
-       
-  }
+  id?: string;
+  cliente?: string;
+  nit?: string;
+  factura?: string;
+  concepto?: string;
+  estado?: string;
+}
