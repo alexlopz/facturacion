@@ -36,13 +36,26 @@ export const mainListItems = (
         <ListItemText primary="Home" />
       </ListItemButton>
     </Link>
-    <Link underline="none" color="inherit" href={`/solicitud`}>
-      <ListItemButton>
-        <ListItemIcon>
-          <LocalShippingIcon />
-        </ListItemIcon>
-        <ListItemText primary="Rutas de Cobro" />
-      </ListItemButton>
+    <ListItemButton>
+      <ListItemIcon>
+        <ShoppingCartIcon />
+      </ListItemIcon>
+      <ListItemText primary="Orders" />
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemIcon>
+        <PeopleIcon />
+      </ListItemIcon>
+      <ListItemText primary="Customers" />
+    </ListItemButton>
+
+    <Link underline="none" color="inherit" href={`/Rutas`}>
+    <ListItemButton>
+      <ListItemIcon>
+        <LocalShippingIcon />
+      </ListItemIcon>
+      <ListItemText primary="Rutas de Cobro" />
+    </ListItemButton>
     </Link>
 
     <Link underline="none" color="inherit" href={`/convenios`}>

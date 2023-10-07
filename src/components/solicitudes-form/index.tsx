@@ -1,21 +1,35 @@
 import {
+    Autocomplete,
+    Grid,
+    Box,
     Button,
     FormControl,
+    FormHelperText,
     InputLabel,
     MenuItem,
     Select,
     SelectChangeEvent,
     TextField,
+    Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import { ISolicitud } from "./type";
-import Autocomplete from '@mui/material/Autocomplete';
+//import { ICargo } from "./type";
+import SendIcon from '@mui/icons-material/Send';
 
 
-const SolicitudesForm: React.FC<any> = ({ handleSubmit, clientes, formDefault }) => {
+const SolicitudesForm: React.FC<any> = ({
+    handleSubmit,
+    clientes,
+    facturas,
+    formDefault
+}) => {
     const [formulario, setFormulario] = useState<any>(formDefault);
 
     const handleSelectedChange = (event: SelectChangeEvent) => {
+        setFormulario({ ...formulario, [event.target.name]: event.target.value });
+    };
+
+    const handleSelectedChangeAuto = (event: any) => {
         setFormulario({ ...formulario, [event.target.name]: event.target.value });
     };
 
@@ -25,46 +39,54 @@ const SolicitudesForm: React.FC<any> = ({ handleSubmit, clientes, formDefault })
     console.log("formulario", formulario);
 
     const selectStyle = {
-        mb: 2,
+        mb: 4,
     };
-
     return (
         <form onSubmit={handleSubmit(formulario)}>
-            <h3>Selección de Cuenta</h3>
-            <FormControl fullWidth sx={selectStyle}>
-                <InputLabel id="demo-simple-select-label">Cliente</InputLabel>
-                <Select
-                    labelId="demo-simple-select-label"
+            <Box
+                sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+            >
+                <Typography variant="h6" gutterBottom>
+                    Seleccion de Cuenta
+                </Typography>
+            </Box>
+            <FormControl fullWidth sx={{ ...selectStyle, mt: 2 }}>
+                <Autocomplete
+                    disablePortal
                     id="cliente"
-                    value={formulario?.cliente}
-                    label="Cliente"
-                    name="cliente"
-                    onChange={handleSelectedChange}
-                >
-                    {clientes.map((cliente: any, index: number) => (
-                        <MenuItem key={index} value={cliente.id}> {cliente.nombre} </MenuItem>
-                    ))}
-                </Select>
+                    options={clientes}
+                    getOptionLabel={(option: any) => option.nombre}
+                    renderInput={(params) => (
+                        <TextField {...params} name="cliente" label="Cliente" />
+                    )}
+                />
+                <FormHelperText>
+                    Puedes buscar por nombre o apellido del cliente
+                </FormHelperText>
             </FormControl>
 
-            <FormControl fullWidth sx={selectStyle}>
-                <InputLabel id="demo-simple-select-label">Factura</InputLabel>
-                <Select
-                    labelId="demo-simple-select-label"
-                    id="factura"
-                    value={formulario?.factura}
-                    label="Factura"
-                    name="factura"
-                    onChange={handleSelectedChange}
-                >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-            </FormControl>
+            <Grid item xs={12} sm={12} md={12} lg={6}>
+                <FormControl fullWidth sx={selectStyle}>
+                    <Autocomplete
+                        disablePortal
+                        id="factura"
+                        options={facturas}
+                        getOptionLabel={(option: any) => option.factura}
+                        renderInput={(params) => (
+                            <TextField {...params} name="factura" label="Factura" />
+                        )}
+                    />
+                </FormControl>
+            </Grid>
 
-            
-            <h3>Selección de Plazo de Crédito</h3>
+
+            <Box
+                sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+            >
+                <Typography variant="h6" gutterBottom>
+                    Selección de Plazo de Crédito
+                </Typography>
+            </Box>
             <FormControl fullWidth sx={selectStyle}>
                 <InputLabel id="demo-simple-select-label">Plazo</InputLabel>
                 <Select
@@ -80,13 +102,14 @@ const SolicitudesForm: React.FC<any> = ({ handleSubmit, clientes, formDefault })
                     <MenuItem value={30}>90 Días</MenuItem>
                 </Select>
             </FormControl>
+            <Box sx={{ display: "flex", justifyContent: "center", width: "100%", mt: "5px" }}>
 
-
-            <FormControl fullWidth sx={selectStyle}>
-                <Button type="submit" variant="contained" color="success">
-                    Enviar Solicitud
-                </Button>
-            </FormControl>
+                <FormControl  sx={selectStyle}>
+                    <Button type="submit" variant="contained" color="success" startIcon={<SendIcon />}>
+                        Enviar Solicitud
+                    </Button>
+                </FormControl>
+            </Box>
         </form>
     );
 };
