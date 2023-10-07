@@ -191,7 +191,7 @@ const DashboardLayout: React.FC<any> = ({ children, title }) => {
         <Toolbar />
         <Card
           sx={{
-            height: "100vh",
+            height: "90vh",
             border: "1px solid #dbdbdb",
             borderRadius: 2,
             bgcolor: "white",

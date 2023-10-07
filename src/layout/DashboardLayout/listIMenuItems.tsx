@@ -17,6 +17,10 @@ import { Home } from "@mui/icons-material";
 import LayersOutlinedIcon from '@mui/icons-material/LayersOutlined';
 import AccessAlarmOutlinedIcon from '@mui/icons-material/AccessAlarmOutlined';
 import PaymentOutlinedIcon from '@mui/icons-material/PaymentOutlined';
+import NoteIcon from '@mui/icons-material/Note';
+import BalanceIcon from '@mui/icons-material/Balance';
+import MoneyOffIcon from '@mui/icons-material/MoneyOff';
+
 import CheckIcon from '@mui/icons-material/Check';
 import NoteAltIcon from '@mui/icons-material/NoteAlt';
 import HandshakeIcon from '@mui/icons-material/Handshake';
@@ -33,39 +37,39 @@ export const mainListItems = (
       </ListItemButton>
     </Link>
     <Link underline="none" color="inherit" href={`/solicitud`}>
-    <ListItemButton>
-      <ListItemIcon>
-        <LocalShippingIcon />
-      </ListItemIcon>
-      <ListItemText primary="Rutas de Cobro" />
-    </ListItemButton>
+      <ListItemButton>
+        <ListItemIcon>
+          <LocalShippingIcon />
+        </ListItemIcon>
+        <ListItemText primary="Rutas de Cobro" />
+      </ListItemButton>
     </Link>
 
     <Link underline="none" color="inherit" href={`/convenios`}>
-    <ListItemButton>
-      <ListItemIcon>
-        <HandshakeIcon />
-      </ListItemIcon>
-      <ListItemText primary="Convenios de Pago" />
-    </ListItemButton>
+      <ListItemButton>
+        <ListItemIcon>
+          <HandshakeIcon />
+        </ListItemIcon>
+        <ListItemText primary="Convenios de Pago" />
+      </ListItemButton>
     </Link>
 
     <Link underline="none" color="inherit" href={`/solicitud`}>
-    <ListItemButton>
-      <ListItemIcon>
-        <NoteAltIcon />
-      </ListItemIcon>
-      <ListItemText primary="Solicitud de Crédito" />
-    </ListItemButton>
+      <ListItemButton>
+        <ListItemIcon>
+          <NoteAltIcon />
+        </ListItemIcon>
+        <ListItemText primary="Solicitud de Crédito" />
+      </ListItemButton>
     </Link>
-    
+
     <Link underline="none" color="inherit" href={`/autorizacion`}>
-    <ListItemButton>
-      <ListItemIcon>
-        <CheckIcon />
-      </ListItemIcon>
-      <ListItemText primary="Autorizaciones" />
-    </ListItemButton>
+      <ListItemButton>
+        <ListItemIcon>
+          <CheckIcon />
+        </ListItemIcon>
+        <ListItemText primary="Autorizaciones" />
+      </ListItemButton>
     </Link>
 
     <Link underline="none" color="inherit" href={`/reportes`}>
@@ -84,6 +88,7 @@ export const mainListItems = (
         <ListItemText primary="Pagos Visalink" />
       </ListItemButton>
     </Link>
+
     <Link underline="none" color="inherit" href={`/recordatorios`}>
       <ListItemButton>
         <ListItemIcon>
@@ -103,7 +108,7 @@ export const mainListItems = (
     <Link underline="none" color="inherit" href={`/amortizaciones`}>
       <ListItemButton>
         <ListItemIcon>
-          <PaidIcon/>
+          <PaidIcon />
         </ListItemIcon>
         <ListItemText primary="Amortizaciones" />
       </ListItemButton>
@@ -132,7 +137,49 @@ export const mainListItems = (
         <ListItemText primary="Estado Recibos" />
       </ListItemButton>
     </Link>
+
+    <Link underline="none" color="inherit" href={`/deudores`}>
+      <ListItemButton>
+        <ListItemIcon>
+          <MoneyOffIcon />
+        </ListItemIcon>
+        <ListItemText primary="Lista de Deudores" />
+      </ListItemButton>
+    </Link>
+
+    <Link underline="none" color="inherit" href={`/saldos`}>
+      <ListItemButton>
+        <ListItemIcon>
+          <BalanceIcon />
+        </ListItemIcon>
+        <ListItemText primary="Antiguedad de Saldos" />
+      </ListItemButton>
+    </Link>
+
+    <Link underline="none" color="inherit" href={`/notaCredito`}>
+      <ListItemButton>
+        <ListItemIcon>
+          <NoteIcon />
+        </ListItemIcon>
+        <ListItemText primary="Nota Credito" />
+      </ListItemButton>
+    </Link>
+
+    <Link underline="none" color="inherit" href={`/notaDebito`}>
+      <ListItemButton>
+        <ListItemIcon>
+          <NoteIcon />
+        </ListItemIcon>
+        <ListItemText primary="Nota Debito" />
+      </ListItemButton>
+    </Link>
+
+
+
+
   </React.Fragment>
+
+
 );
 
 export const secondaryListItems = (
