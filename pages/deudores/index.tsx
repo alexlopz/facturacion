@@ -11,6 +11,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
  import { Ideudores } from "../../src/components/deudores-forms/type";
  import DeudoresForms from "../../src/components/deudores-forms";
 import { useState } from "react";
+import { getSaldos } from "../../src/services/saldos";
 
 
 
@@ -24,7 +25,7 @@ const formDefault: Ideudores= {
   meses:""
 };
 
-const Dedudores: React.FC<any> = ({ cargos, clientes }) => {
+const Dedudores: React.FC<any> = ({ saldos, clientes }) => {
   const [formulario, setFormulario] = useState<Ideudores>(formDefault);
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 10 },
@@ -74,7 +75,7 @@ const Dedudores: React.FC<any> = ({ cargos, clientes }) => {
         <Grid item xs={12} md={8}>
           <Card variant="outlined" sx={styleTable}>
             <CardContent>
-              <DataTable rows={cargos} columns={columns} />
+              <DataTable rows={saldos} columns={columns} />
             </CardContent>
           </Card>
         </Grid>
@@ -85,10 +86,10 @@ const Dedudores: React.FC<any> = ({ cargos, clientes }) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const clientes = await getClientes();
-  const cargos = await getCargos();
+  const saldos = await getSaldos();
   return {
     props: {
-      cargos,
+      saldos,
       clientes,
     },
   };

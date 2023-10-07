@@ -8,86 +8,105 @@ export default async function handler(
     const response = [
       {
         "id": 1,
-        "cliente": "Gasolinera Shell",
+        cliente: "Gasolinera Shell",
         "factura": 2132132465,
-        "concepto": "Servicios adicionales",
+        "concepto": "Cheque rechazado",
         "monto": 500,
-        "fecha_creacion": "2023-04-15"
+        "num_fecha": "1-1-2002",
+        "plazos": "30",
+        "meses": "2"
       },
       {
         "id": 2,
         "cliente": "Tienda de comestibles",
         "factura": 9876543210,
-        "concepto": "Servicios legales",
+        "concepto": "Pago atrasado",
         "monto": 750,
-        "fecha_creacion": "2023-08-22"
+        "num_fecha": "1-1-2003",
+        "plazos": "30",
+        "meses": "4"
       },
       {
         "id": 3,
         "cliente": "Restaurante La Piazza",
         "factura": 4567890123,
-        "concepto": "Cheque rechazado",
+        "concepto": "Compra de ingredientes",
         "monto": 1200,
-        "fecha_creacion": "2023-05-10"
+        "num_fecha": "1-1-2004",
+        "plazos": "60",
+        "meses": "2"
       },
       {
         "id": 4,
         "cliente": "Taller mecánico AutoFix",
         "factura": 5555555555,
-        "concepto": "Servicios legales",
+        "concepto": "Reparación de motor",
         "monto": 2000,
-        "fecha_creacion": "2023-06-28"
+        "num_fecha": "1-1-2005",
+        "plazos": "90",
+        "meses": "5"
       },
       {
         "id": 5,
         "cliente": "Farmacia Saludable",
         "factura": 1234567890,
-        "concepto": "Cheque rechazado",
+        "concepto": "Compra de medicamentos",
         "monto": 350,
-        "fecha_creacion": "2023-03-05"
+        "num_fecha": "1-1-2006",
+        "plazos": "30",
+        "meses": "1"
       },
       {
         "id": 6,
         "cliente": "Supermercado MegaMart",
         "factura": 9999999999,
-        "concepto": "Servicios adicionales",
+        "concepto": "Compra de víveres",
         "monto": 800,
-        "fecha_creacion": "2023-07-17"
+        "num_fecha": "1-1-2007",
+        "plazos": "30",
+        "meses": "7"
       },
       {
         "id": 7,
         "cliente": "Hotel Paradise",
         "factura": 7777777777,
-        "concepto": "Servicios legales",
+        "concepto": "Hospedaje de clientes",
         "monto": 1500,
-        "fecha_creacion": "2023-09-12"
+        "num_fecha": "1-1-2008",
+        "plazos": "90",
+        "meses": "3"
       },
       {
         "id": 8,
         "cliente": "Librería BookWorld",
         "factura": 4444444444,
-        "concepto": "Servicios adicionales",
+        "concepto": "Compra de libros",
         "monto": 200,
-        "fecha_creacion": "2023-02-20"
+        "num_fecha": "1-1-2009",
+        "plazos": "60",
+        "meses": "3"
       },
       {
         "id": 9,
         "cliente": "Cafetería Espresso",
         "factura": 8888888888,
-        "concepto": "Cheque rechazado",
+        "concepto": "Compra de café",
         "monto": 50,
-        "fecha_creacion": "2023-01-08"
+        "num_fecha": "1-1-2010",
+        "plazos": "30",
+        "meses": "2"
       },
       {
         "id": 10,
         "cliente": "Gimnasio FitLife",
         "factura": 6666666666,
-        "concepto": "Servicios adicionales",
+        "concepto": "Pago mensual",
         "monto": 120,
-        "fecha_creacion": "2023-10-02"
+        "num_fecha": "1-1-2011",
+        "plazos": "30",
+        "meses": "2"
       }
     ]
-    
     
     res.status(200).json(response);
   } catch (error) {

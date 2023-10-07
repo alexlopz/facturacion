@@ -1,4 +1,4 @@
-import { Card, CardContent, Grid } from "@mui/material";
+import { Button, Card, CardContent, Grid } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 import { GetServerSideProps } from "next";
 import DataTable from "../../src/components/data-table";
@@ -14,6 +14,16 @@ const columns: GridColDef[] = [
   { field: "monto", headerName: "Monto" },
   { field: "status", headerName: "Estado" },
   { field: "fecha_creacion", headerName: "Fecha de Creacion", width: 150 },
+  {
+    field: "actions",
+    type: "actions",
+    width: 100,
+    getActions: (params) => [
+      <Button variant="outlined" color="primary" size="small">
+        Ver Link
+      </Button>,
+    ],
+  },
 ];
 
 const VisaLink: React.FC<any> = ({ pagos }) => {
@@ -28,7 +38,10 @@ const VisaLink: React.FC<any> = ({ pagos }) => {
         <Grid item xs={12} md={4}>
           <Card variant="outlined" sx={styleTable}>
             <CardContent>
-              <VisalinkForm handleSubmit={() => console.log('click')} facturas={pagos}/>
+              <VisalinkForm
+                handleSubmit={() => console.log("click")}
+                facturas={pagos}
+              />
             </CardContent>
           </Card>
         </Grid>
