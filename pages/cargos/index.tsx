@@ -9,7 +9,7 @@ import { useState } from "react";
 import CargosTable from "../../src/components/cargos/table";
 import { getFacturas } from "../../src/services/facturas";
 
-const formDefault: ICargo = {
+const formDefault: ICargo= {
   cliente: "",
   factura: "",
   concepto: "",
@@ -17,7 +17,6 @@ const formDefault: ICargo = {
 
 const Cargos: React.FC<any> = ({ cargos, clientes, facturas }) => {
   const [formulario, setFormulario] = useState<ICargo>(formDefault);
-
 
   const deleteUser = (
     e: React.MouseEvent<HTMLButtonElement>,
