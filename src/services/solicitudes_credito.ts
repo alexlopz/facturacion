@@ -1,7 +1,7 @@
-import { IRecordatorio } from "../components/recordatorios/type";
+import { IPlainObject } from "../definitions/IPlainObject";
 
-export const getRecordatorios = async (): Promise<IRecordatorio[]> => {
-  const url = "http://localhost:3000/api/recordatorios";
+export const getSolicitudes = async (): Promise<IPlainObject> => {
+  const url = "http://localhost:3000/api/solicitudes_credito";
 
   try {
     const response = await fetch(url);

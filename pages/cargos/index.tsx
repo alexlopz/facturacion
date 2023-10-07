@@ -1,15 +1,13 @@
 import { Card, CardContent, Grid } from "@mui/material";
-import { GridActionsCellItem, GridColDef } from "@mui/x-data-grid";
 import { GetServerSideProps } from "next";
-import CargosForm from "../../src/components/cargos/cargos-form";
-import DataTable from "../../src/components/data-table";
+import CargosForm from "../../src/components/cargos/form";
 import DashboardLayout from "../../src/layout/DashboardLayout";
 import { getCargos } from "../../src/services/cargos";
 import { getClientes } from "../../src/services/clientes";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import { ICargo } from "../../src/components/cargos/cargos-form/type";
+import { ICargo } from "../../src/components/cargos/form/type";
 import { useState } from "react";
-import { Idebito } from "../../src/components/debito/debito-forms/type";
+import CargosTable from "../../src/components/cargos/table";
+import { getFacturas } from "../../src/services/facturas";
 
 const formDefault: ICargo= {
   cliente: "",
@@ -17,28 +15,8 @@ const formDefault: ICargo= {
   concepto: "",
 };
 
-const Cargos: React.FC<any> = ({ cargos, clientes }) => {
+const Cargos: React.FC<any> = ({ cargos, clientes, facturas }) => {
   const [formulario, setFormulario] = useState<ICargo>(formDefault);
-  const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", width: 10 },
-    { field: "cliente", headerName: "Cliente", width: 200 },
-    { field: "factura", headerName: "No. Factura", width: 100 },
-    { field: "concepto", headerName: "Concepto", width: 200 },
-    { field: "monto", headerName: "Monto" },
-    
-    {
-      field: "actions",
-      type: "actions",
-      width: 10,
-      getActions: (params) => [
-        <GridActionsCellItem
-          icon={<VisibilityIcon />}
-          label="Delete"
-          onClick={(e) => deleteUser(e, params.row)}
-        />,
-      ],
-    },
-  ];
 
   const deleteUser = (
     e: React.MouseEvent<HTMLButtonElement>,
@@ -50,13 +28,14 @@ const Cargos: React.FC<any> = ({ cargos, clientes }) => {
 
   const styleTable = { height: "100%" };
   return (
-    <DashboardLayout title={"Cargos"}>
+    <DashboardLayout title={"CARGOS"}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={4}>
           <Card variant="outlined" sx={styleTable}>
             <CardContent>
               <CargosForm
                 clientes={clientes}
+                facturas={facturas}
                 handleSubmit={(e: any) => console.log("eee", e)}
                 formDefault={formulario}
               />
@@ -66,7 +45,7 @@ const Cargos: React.FC<any> = ({ cargos, clientes }) => {
         <Grid item xs={12} md={8}>
           <Card variant="outlined" sx={styleTable}>
             <CardContent>
-              <DataTable rows={cargos} columns={columns} />
+             <CargosTable cargos={cargos}  />
             </CardContent>
           </Card>
         </Grid>
@@ -78,10 +57,12 @@ const Cargos: React.FC<any> = ({ cargos, clientes }) => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const clientes = await getClientes();
   const cargos = await getCargos();
+  const facturas = await getFacturas();
   return {
     props: {
       cargos,
       clientes,
+      facturas,
     },
   };
 };
