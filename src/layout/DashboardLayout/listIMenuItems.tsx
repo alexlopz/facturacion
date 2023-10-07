@@ -6,6 +6,11 @@ import ListSubheader from "@mui/material/ListSubheader";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PeopleIcon from "@mui/icons-material/People";
 import BarChartIcon from "@mui/icons-material/BarChart";
+import NewspaperIcon from '@mui/icons-material/Newspaper';
+import LayersIcon from "@mui/icons-material/Layers";
+import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
+import PaidIcon from '@mui/icons-material/Paid';
+import HistoryEduIcon from '@mui/icons-material/HistoryEdu';
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import { Link } from "@mui/material";
 import { Home } from "@mui/icons-material";
@@ -93,6 +98,38 @@ export const mainListItems = (
           <LayersOutlinedIcon />
         </ListItemIcon>
         <ListItemText primary="Cargos" />
+      </ListItemButton>
+    </Link>
+    <Link underline="none" color="inherit" href={`/amortizaciones`}>
+      <ListItemButton>
+        <ListItemIcon>
+          <PaidIcon/>
+        </ListItemIcon>
+        <ListItemText primary="Amortizaciones" />
+      </ListItemButton>
+    </Link>
+    <Link underline="none" color="inherit" href={`/recibos`}>
+      <ListItemButton>
+        <ListItemIcon>
+          <ReceiptLongIcon />
+        </ListItemIcon>
+        <ListItemText primary="Recibos" />
+      </ListItemButton>
+    </Link>
+    <Link underline="none" color="inherit" href={`/estadofacturas`}>
+      <ListItemButton>
+        <ListItemIcon>
+          <HistoryEduIcon />
+        </ListItemIcon>
+        <ListItemText primary="Estado Facturas" />
+      </ListItemButton>
+    </Link>
+    <Link underline="none" color="inherit" href={`/estadorecibos`}>
+      <ListItemButton>
+        <ListItemIcon>
+          <NewspaperIcon />
+        </ListItemIcon>
+        <ListItemText primary="Estado Recibos" />
       </ListItemButton>
     </Link>
   </React.Fragment>
