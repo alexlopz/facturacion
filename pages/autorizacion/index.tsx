@@ -4,25 +4,29 @@ import { GetServerSideProps } from "next";
 import DataTable from "../../src/components/data-table";
 import DashboardLayout from "../../src/layout/DashboardLayout";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { ICargo } from "../../src/components/cargos/cargos-form/type";
+//import { ICargo } from "../../src/components/cargos/cargos-form/type";
 import { useState } from "react";
 import { getAutorizacion } from "../../src/services/autorizacion";
+import { getSolicitudes } from "../../src/services/solicitudes_credito";
+import { ISolicitud } from "../../src/components/solicitudes-form/type";
 
 
-const formDefault: ICargo = {
+const formDefault: any = {
   cliente: "",
   factura: "",
   concepto: "",
+  
 };
 
-const Autorizacion: React.FC<any> = ({ autorizaciones }) => {
-  const [formulario, setFormulario] = useState<ICargo>(formDefault);
+const Autorizacion: React.FC<any> = ({ autorizaciones, solicitudes }) => {
+  const [formulario, setFormulario] = useState<any>(formDefault);
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 10 },
     { field: "cliente", headerName: "Cliente", width: 200 },
     { field: "factura", headerName: "No. Factura", width: 120 },
     { field: "fecha_creacion", headerName: "Fecha de Solicitud", width: 180 },
     { field: "monto", headerName: "Monto", width: 90 },
+    { field: "estado", headerName: "Estado", width: 90 },
     {
       field: "actions",
       type: "actions",
@@ -42,7 +46,7 @@ const Autorizacion: React.FC<any> = ({ autorizaciones }) => {
 
   const deleteUser = (
     e: React.MouseEvent<HTMLButtonElement>,
-    params: ICargo
+    params: any
   ) => {
     console.log("params", params);
     setFormulario(params);
@@ -58,7 +62,7 @@ const Autorizacion: React.FC<any> = ({ autorizaciones }) => {
           <Card variant="outlined" sx={styleTable}>
 
             <CardContent>
-              <h3>Solicitudes Pendientes de Autorizar</h3>
+              <h3>Solicitudes de Crédito</h3>
               <DataTable rows={autorizaciones} columns={columns} />
             </CardContent>
           </Card>
@@ -70,9 +74,11 @@ const Autorizacion: React.FC<any> = ({ autorizaciones }) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const autorizaciones = await getAutorizacion();
+  const solicitudes = await getSolicitudes();
   return {
     props: {
       autorizaciones,
+      solicitudes,
     },
   };
 };

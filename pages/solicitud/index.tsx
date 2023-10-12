@@ -8,13 +8,15 @@ import { getClientes } from "../../src/services/clientes";
 import { getDetalle_facturas} from "../../src/services/detalle_factura";
 import TextField from '@mui/material/TextField';
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { ICargo } from "../../src/components/cargos/cargos-form/type";
+
 import { useState } from "react";
 import { getSolicitudes } from "../../src/services/solicitudes_credito";
 import SolicitudesForm from "../../src/components/solicitudes-form";
-import { ISolicitud } from "../../src/components/solicitudes-form/type";
+//import { ICargo } from "../../src/components/solicitudes-form/type";
 import Box from '@mui/material/Box';
 import { CenterFocusStrong } from "@mui/icons-material";
+import { getFacturas } from "../../src/services/facturas";
+
 
 const formDefault: any = {
   cliente: "",
@@ -22,7 +24,7 @@ const formDefault: any = {
   concepto: "",
 };
 
-const Solicitud: React.FC<any> = ({ cargos, clientes,detalle}) => {
+const Solicitud: React.FC<any> = ({ clientes, facturas,detalle}) => {
   const [formulario, setFormulario] = useState<any>(formDefault);
   const columns: GridColDef[] = [
     { field: "id", headerName: "No.", width: 10 },
@@ -37,13 +39,14 @@ const Solicitud: React.FC<any> = ({ cargos, clientes,detalle}) => {
 
   const styleTable = { height: "100%" };
   return (
-    <DashboardLayout title={"Nueva Solicitud"}>
+    <DashboardLayout title={"Nueva Solicitud de Crédito"}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={4}>
           <Card variant="outlined" sx={styleTable}>
             <CardContent>
               <SolicitudesForm
                 clientes={clientes}
+                facturas={facturas}
                 handleSubmit={(e: any) => console.log("eee", e)}
                 formDefault={formulario}
               />
@@ -79,11 +82,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const clientes = await getClientes();
   const cargos = await getCargos();
   const detalle = await getDetalle_facturas();
+  const facturas = await getFacturas();
+  
   return {
     props: {
       cargos,
       clientes,
+      facturas,
       detalle,
+      
     },
   };
 };
