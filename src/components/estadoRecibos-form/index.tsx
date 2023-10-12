@@ -112,7 +112,7 @@ const EstadoReciboForm: React.FC<any> = ({ handleSubmit }) => {
           <FormControl sx={selectStyle}>
             <TextField
               id="outlined-basic"
-              label="Fecha Inicio"
+              label="Fecha Fin"
               variant="outlined"
               type="date"
               required

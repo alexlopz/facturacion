@@ -1,35 +1,46 @@
-import { Card, CardContent, Grid } from "@mui/material";
+import { Button, Card, CardContent, Grid, Tooltip } from "@mui/material";
 import { GridActionsCellItem, GridColDef } from "@mui/x-data-grid";
 import EstadoReciboForm from "../../src/components/estadoRecibos-form";
 import DataTable from "../../src/components/data-table";
 import DashboardLayout from "../../src/layout/DashboardLayout";
-import AdfScannerIcon from '@mui/icons-material/AdfScanner';
-import Checkbox from '@mui/material/Checkbox';
-import EditIcon from '@mui/icons-material/Edit';
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+import RemoveRedEyeRoundedIcon from '@mui/icons-material/RemoveRedEyeRounded';
 
 
 const columns: GridColDef[] = [
   { field: "recibo", headerName: "Cod_Recibo", width: 120, align: "center" },
   { field: "cliente", headerName: "Cod_Cliente", width: 150, align: "center" },
   { field: "factura", headerName: "Factura", width: 100, align: "center" },
-  { field: "fecha", headerName: "Fecha", width: 150, align: "center" },  
+  { field: "fecha", headerName: "Fecha", width: 130, align: "center" },
+  { field: "descripcion", headerName: "Descripción", width: 180, align: "center" },
+  { field: "monto", headerName: "Monto", width: 150, align: "center" },  
   { field: "estado", headerName: "Estado", width: 100 , align: "center"},
   {
     field: "actions",
     type: "actions",
-    headerName: "Acciones",
     getActions: (params) => [
-      <GridActionsCellItem
-        icon={< EditIcon/> }
-        label="Delete"
-        onClick={(e) => console.log("eee", e)}
-      />,
-      <GridActionsCellItem
-      icon={<AdfScannerIcon />}
-      label="Delete"
-      onClick={(e) => console.log("eee", e)}
-    />,
-    ],
+      <Button
+        variant="outlined"
+        color="primary"
+        size="small"
+      >
+        <RemoveRedEyeRoundedIcon />
+      </Button>
+    ], headerName: "Detalle"
+  },
+  {
+    field: "actions2",
+    type: "actions",
+    getActions: (params) => [
+
+      <Button
+        variant="outlined"
+        color="primary"
+        size="small"
+      >
+        <DeleteRoundedIcon />
+      </Button>
+    ], headerName: "Eliminar"
   },
 
 ];
@@ -41,7 +52,9 @@ const rows: any[] = [
     cliente: 44457,
     factura: 2132132465,
     fecha: "01/07/2023",
-    estado: "Activo",    
+    estado: "Activo",
+    descripcion: "Abono a factura",
+    monto: "Q12000.00",    
   },
   {
     id: 2,
@@ -50,6 +63,8 @@ const rows: any[] = [
     factura: 2132132465,
     fecha: "01/06/2023",
     estado: "Anulado",
+    descripcion: "Abono a factura",
+    monto: "Q10000.00", 
   },
   {
     id: 3,
@@ -58,6 +73,8 @@ const rows: any[] = [
     factura: 2132132465,
     fecha: "01/05/2023",
     estado: "Facturado",
+    descripcion: "Pago Completo Factura",
+    monto: "Q1000.00", 
   },
 ];
 

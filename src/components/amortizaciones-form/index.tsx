@@ -1,4 +1,6 @@
 import {
+  Alert,
+  Autocomplete,
   Button,
   Dialog,
   DialogActions,
@@ -11,6 +13,7 @@ import {
   MenuItem,
   Select,
   SelectChangeEvent,
+  Snackbar,
   Table,
   TableCell,
   TableContainer,
@@ -23,6 +26,7 @@ import { IAmortizaciones } from "./type";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
 const formDefault: IAmortizaciones = {
   codCliente: "",
@@ -33,6 +37,8 @@ const formDefault: IAmortizaciones = {
   interesesGenerados: "",
   totalPagar: "",
 };
+
+
 
 const AmortizacionesForm: React.FC<any> = ({ handleSubmit }) => {
   const [formulario, setFormulario] = useState<IAmortizaciones>(formDefault);
@@ -53,6 +59,24 @@ const AmortizacionesForm: React.FC<any> = ({ handleSubmit }) => {
   const handleClose = () => {
     setOpen(false);
   };
+  const top100Films = [
+    { label: 199412 },
+    { label: 197225 },
+    { label: 197444 },
+    { label: 200855 },
+    { label: 195767 },
+    { label: 199385 },
+    { label: 199465 },
+  ];
+  const top100Films2 = [
+    { label: 8994127 },
+    { label: 2972254 },
+    { label: 3974445 },
+    { label: 5008556 },
+    { label: 8957674 },
+    { label: 4993852 },
+    { label: 1994651 },
+  ];
 
 
   return (
@@ -60,31 +84,21 @@ const AmortizacionesForm: React.FC<any> = ({ handleSubmit }) => {
 
       <Grid container columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
         <Grid item xs={6}>
-          <TextField 
-          required 
-          sx={{ mb: 2 }} 
-          label="Codigo Cliente" 
-          variant="outlined" 
-          id="outlined-disabled" 
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={top100Films}
+            renderInput={(params) => <TextField required {...params} label="Codigo Cliente" />}
           />
         </Grid>
         <Grid item xs={6}>
           <FormControl fullWidth sx={{ mb: 2, minWidth: 120 }} required>
-            <InputLabel id="demo-simple-select-label">Factura</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="codFactura"
-              value={formulario?.codFactura}
-              label="Factura"
-              name="codFactura"
-              onChange={handleSelectedChange}
-              margin="none"
-              autoWidth
-            >
-              <MenuItem value={10}>12457893</MenuItem>
-              <MenuItem value={20}>33654788</MenuItem>
-              <MenuItem value={30}>45487952</MenuItem>
-            </Select>
+            <Autocomplete
+              disablePortal
+              id="combo-box-demo"
+              options={top100Films2}
+              renderInput={(params) => <TextField required {...params} label="Codigo Factura" />}
+            />
           </FormControl>
         </Grid>
       </Grid>
@@ -102,7 +116,7 @@ const AmortizacionesForm: React.FC<any> = ({ handleSubmit }) => {
 
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
         <Grid item xs={6}>
-          <TextField 
+          <TextField
             helperText=""
             fullWidth
             sx={{ mb: 1, }}
@@ -121,36 +135,36 @@ const AmortizacionesForm: React.FC<any> = ({ handleSubmit }) => {
             sx={{ mb: 1, }}
             label="Fecha Limite"
             type="text"
-            value="DD/MM/AA" 
-            variant="outlined" 
-            disabled id="outlined-basic" 
-            />
+            value="DD/MM/AA"
+            variant="outlined"
+            disabled id="outlined-basic"
+          />
         </Grid>
       </Grid>
 
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
         <Grid item xs={6}>
-          <TextField 
-          helperText="" 
-          fullWidth
-          value={"Q1,000.00"} 
-          sx={{ mb: 1, }} 
-          label="Intereses" 
-          variant="outlined"
-          type="text"
-          disabled 
-          id="outlined-basic" />
+          <TextField
+            helperText=""
+            fullWidth
+            value={"Q1,000.00"}
+            sx={{ mb: 1, }}
+            label="Intereses"
+            variant="outlined"
+            type="text"
+            disabled
+            id="outlined-basic" />
         </Grid>
         <Grid item xs={6}>
-          <TextField 
-          helperText="" 
-          fullWidth 
-          sx={{ mb: 1, }}
-          label="Total a Pagar"
-          value="51,000.00" 
-          variant="outlined" 
-          disabled 
-          id="outlined-basic" />
+          <TextField
+            helperText=""
+            fullWidth
+            sx={{ mb: 1, }}
+            label="Total a Pagar"
+            value="51,000.00"
+            variant="outlined"
+            disabled
+            id="outlined-basic" />
         </Grid>
       </Grid>
 
@@ -174,13 +188,11 @@ const AmortizacionesForm: React.FC<any> = ({ handleSubmit }) => {
         <DialogContent dividers>
           <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
             <Grid item xs={6}>
-              <TextField 
-              fullWidth 
-              required 
-              sx={{ mb: 2 }} 
-              label="# Recibo" 
-              variant="outlined" 
-              id="outlined-disabled" 
+              <Autocomplete
+                disablePortal
+                id="combo-box-demo"
+                options={top100Films2}
+                renderInput={(params) => <TextField required {...params} label="#Recibo" />}
               />
             </Grid>
             <Grid item xs={6}>
@@ -213,24 +225,24 @@ const AmortizacionesForm: React.FC<any> = ({ handleSubmit }) => {
             rowSpacing={1}
             columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
             <Grid item xs={6}>
-              <TextField 
-              helperText="" 
-              fullWidth sx={{ mb: 1, }}
-              required 
-              label="Numero de Transferencia" 
-              variant="outlined" 
-              id="outlined-disabled" />
+              <TextField
+                helperText=""
+                fullWidth sx={{ mb: 1, }}
+                required
+                label="Numero de Transferencia"
+                variant="outlined"
+                id="outlined-disabled" />
             </Grid>
             <Grid item xs={6}>
-              <TextField 
-              helperText="" 
-              fullWidth 
-              sx={{ mb: 1, }} 
-              label="Monto"
-              type="text"
-              variant="outlined" 
-              id="outlined-disabled" 
-              required 
+              <TextField
+                helperText=""
+                fullWidth
+                sx={{ mb: 1, }}
+                label="Monto"
+                type="text"
+                variant="outlined"
+                id="outlined-disabled"
+                required
               />
             </Grid>
           </Grid>
