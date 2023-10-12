@@ -11,6 +11,7 @@ import {
 import React, { useState } from "react";
 import { regex } from "../../../utilities/regex";
 import { IMonto } from "./type";
+import SendIcon from "@mui/icons-material/Send";
 
 const VisalinkForm: React.FC<any> = ({
   handleSubmit,
@@ -104,7 +105,13 @@ const VisalinkForm: React.FC<any> = ({
       </Grid>
 
       <FormControl fullWidth sx={selectStyle}>
-        <Button type="submit" variant="contained" color="success">
+        <Button
+          type="submit"
+          variant="contained"
+          color="success"
+          fullWidth
+          startIcon={<SendIcon />}
+        >
           Guardar
         </Button>
       </FormControl>
