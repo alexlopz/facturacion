@@ -15,7 +15,6 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 
-//credito
 
 const CreditoForms: React.FC<any> = ({ handleSubmit, clientes, formDefault }) => {
   const [formulario, setFormulario] = useState<Icredito>(formDefault);
@@ -74,7 +73,7 @@ const CreditoForms: React.FC<any> = ({ handleSubmit, clientes, formDefault }) =>
       </FormControl>
 
          {/* monto */}
-      <FormControl  sx={selectStyle}>
+      <FormControl fullWidth sx={selectStyle}>
         <TextField
           id="outlined-basic"
           label="Monto"
@@ -83,7 +82,6 @@ const CreditoForms: React.FC<any> = ({ handleSubmit, clientes, formDefault }) =>
           type="number"
           helperText="Ingresa el Monto a Acreditar"
           required
-          title="Ingresa un Monto" 
           onChange={handleChange}
         />
         
