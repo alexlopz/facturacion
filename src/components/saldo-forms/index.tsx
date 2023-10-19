@@ -9,9 +9,13 @@ import {
   TextField,
 } from "@mui/material";
 import React, { useState } from "react";
+import { Isaldos } from "./type";
+import SendIcon from '@mui/icons-material/Send';
+import PersonOutlineTwoToneIcon from '@mui/icons-material/PersonOutlineTwoTone';
 
-const Saldo: React.FC<any> = ({}) => {
-  const [formulario, setFormulario] = useState<any>({});
+
+const SaldosForms: React.FC<any> = ({ handleSubmit, clientes, formDefault }) => {
+  const [formulario, setFormulario] = useState<Isaldos>(formDefault);
 
   const handleSelectedChange = (event: SelectChangeEvent) => {
     setFormulario({ ...formulario, [event.target.name]: event.target.value });
@@ -20,126 +24,95 @@ const Saldo: React.FC<any> = ({}) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormulario({ ...formulario, [event.target.name]: event.target.value });
   };
+  console.log("formulario", formulario);
 
   const selectStyle = {
     mb: 2,
-    mr: 2,
-    minWidth: 140,
   };
 
   return (
-    <form onSubmit={() => console.log()}>
-      <FormControl sx={{margin: '10px 35px', width: '150px'}}>
-        <InputLabel id="demo-simple-select-label">Clientse</InputLabel>
+    <form onSubmit={handleSubmit(formulario)}>
+      <FormControl fullWidth sx={selectStyle}>
+        <InputLabel id="demo-simple-select-label">Id</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="cliente"
+          value={formulario?.cliente}
+          label="Cliente"
+          name="cliente"
+          onChange={handleSelectedChange}
+        >
+          {clientes.map((cliente: any, index: number) => (
+            <MenuItem key={index} value={cliente.id}>
+              {cliente.id}
+            </MenuItem>
+          ))}
+        </Select>
+
+        <FormHelperText>Selecciona el Id</FormHelperText>
+      </FormControl>
+
+      <FormControl fullWidth sx={selectStyle}>
+        <InputLabel id="demo-simple-select-label">Nombre Cliente</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="factura"
           value={formulario?.factura}
-          label="Documento"
+          label="Factura"
           name="factura"
-          title="Selecciona un Cliente"
+          onChange={handleSelectedChange}
+        > 
+          {clientes.map((cliente: any, index: number) => (
+            <MenuItem key={index} value={cliente.id}>
+              {cliente.nombre}
+            </MenuItem>
+          ))}
+        </Select>
+        <FormHelperText>Selecciona el Nombre del Cliente</FormHelperText>
+      </FormControl>
+      <FormControl fullWidth sx={selectStyle}>
+
+
+        <InputLabel id="demo-simple-select-label">Dias Aplazados</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="factura"
+          value={formulario?.factura}
+          label="Factura"
+          name="factura"
           onChange={handleSelectedChange}
         >
-          <MenuItem value={10}>Gasolinera Shell</MenuItem>
-          <MenuItem value={20}>Tienda de comestibles</MenuItem>
-          <MenuItem value={30}>Restaurante La Piazza</MenuItem>
-          <MenuItem value={30}>Taller mecánico AutoFix</MenuItem>
-          <MenuItem value={30}>Farmacia Saludable</MenuItem>
+          <MenuItem value={10}>30</MenuItem>
+          <MenuItem value={20}>60</MenuItem>
+          <MenuItem value={30}>90</MenuItem>
         </Select>
-        <FormHelperText>Selecciona el cliente</FormHelperText>
+        <FormHelperText>Selecciona los dias Aplazados</FormHelperText>
 
       </FormControl>
-
 
       
-      <FormControl sx={selectStyle}>
-        <InputLabel id="demo-simple-select-label">Documento</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="factura"
-          value={formulario?.factura}
-          label="Documento"
-          name="factura"
-          onChange={handleSelectedChange}
-        >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
+
+     
+      <FormControl fullWidth sx={selectStyle}>
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
+          
+          <Button 
+              type="submit" 
+              variant="contained" 
+              color="success" 
+              style={{ minWidth: '245px', marginRight: '13px' }}
+            
+              startIcon={<SendIcon />}
+            >
+               Guardar
+            </Button>
+  
+            
+          </div>
+
       </FormControl>
-      <FormControl sx={selectStyle}>
-        <InputLabel id="demo-simple-select-label">Numero</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="metodo"
-          value={formulario?.metodo}
-          label="Numero"
-          name="metodo"
-          onChange={handleSelectedChange}
-        >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl sx={selectStyle}>
-        <InputLabel id="demo-simple-select-label">Estado</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="frecuencia"
-          value={formulario?.frecuencia}
-          label="Estado"
-          name="frecuencia"
-          onChange={handleSelectedChange}
-        >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl sx={selectStyle}>
-        <InputLabel id="demo-simple-select-label">Fecha</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="frecuencia"
-          value={formulario?.frecuencia}
-          label="Fecha"
-          name="frecuencia"
-          onChange={handleSelectedChange}
-        >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl sx={selectStyle}>
-        <InputLabel id="demo-simple-select-label">Dias credito</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="frecuencia"
-          value={formulario?.frecuencia}
-          label="Dias Credito"
-          name="frecuencia"
-          onChange={handleSelectedChange}
-        >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl fullWidth sx={{ width: "auto", mb: 2 }}>
-        <TextField
-          id="outlined-basic"
-          label="Buscar"
-          name={"nombre"}
-          variant="outlined"
-          placeholder="Identificador del link"
-          type="text"
-          required
-          onChange={handleChange}
-        />
-      </FormControl>
+
     </form>
   );
 };
-export default Saldo;
+export default SaldosForms;

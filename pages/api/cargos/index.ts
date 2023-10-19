@@ -12,10 +12,7 @@ export default async function handler(
         "factura": 2132132465,
         "concepto": "Servicios adicionales",
         "monto": 500,
-        "num_fecha": "1-1-2002",
-        "Vencidas_fechas": "1-1-2002",
-        "plazos": "30",
-        "meses": "2"
+        "fecha_creacion": "2023-04-15"
       },
       {
         "id": 2,
@@ -23,10 +20,7 @@ export default async function handler(
         "factura": 9876543210,
         "concepto": "Servicios legales",
         "monto": 750,
-        "num_fecha": "1-1-2003",
-        "Vencidas_fechas": "1-1-2003",
-        "plazos": "30",
-        "meses": "4"
+        "fecha_creacion": "2023-08-22"
       },
       {
         "id": 3,
@@ -34,10 +28,7 @@ export default async function handler(
         "factura": 4567890123,
         "concepto": "Cheque rechazado",
         "monto": 1200,
-        "num_fecha": "1-1-2004",
-        "plazos": "60",
-        "meses": "2",
-        "Vencidas_fechas": "1-1-2002"
+        "fecha_creacion": "2023-05-10"
       },
       {
         "id": 4,
@@ -45,10 +36,7 @@ export default async function handler(
         "factura": 5555555555,
         "concepto": "Servicios legales",
         "monto": 2000,
-        "num_fecha": "1-1-2005",
-        "plazos": "90",
-        "meses": "5",
-        "Vencidas_fechas": "1-1-2002"
+        "fecha_creacion": "2023-06-28"
       },
       {
         "id": 5,
@@ -56,10 +44,7 @@ export default async function handler(
         "factura": 1234567890,
         "concepto": "Cheque rechazado",
         "monto": 350,
-        "num_fecha": "1-1-2006",
-        "plazos": "30",
-        "meses": "1",
-        "Vencidas_fechas": "1-1-2002"
+        "fecha_creacion": "2023-03-05"
       },
       {
         "id": 6,
@@ -67,10 +52,7 @@ export default async function handler(
         "factura": 9999999999,
         "concepto": "Servicios adicionales",
         "monto": 800,
-        "num_fecha": "1-1-2007",
-        "plazos": "30",
-        "meses": "7",
-        "Vencidas_fechas": "1-1-2002"
+        "fecha_creacion": "2023-07-17"
       },
       {
         "id": 7,
@@ -78,10 +60,7 @@ export default async function handler(
         "factura": 7777777777,
         "concepto": "Servicios legales",
         "monto": 1500,
-        "num_fecha": "1-1-2008",
-        "plazos": "90",
-        "meses": "3",
-        "Vencidas_fechas": "1-1-2002"
+        "fecha_creacion": "2023-09-12"
       },
       {
         "id": 8,
@@ -89,10 +68,7 @@ export default async function handler(
         "factura": 4444444444,
         "concepto": "Servicios adicionales",
         "monto": 200,
-        "num_fecha": "1-1-2009",
-        "plazos": "60",
-        "meses": "3",
-        "Vencidas_fechas": "1-1-2002"
+        "fecha_creacion": "2023-02-20"
       },
       {
         "id": 9,
@@ -100,10 +76,7 @@ export default async function handler(
         "factura": 8888888888,
         "concepto": "Cheque rechazado",
         "monto": 50,
-        "num_fecha": "1-1-2010",
-        "plazos": "30",
-        "meses": "2",
-        "Vencidas_fechas": "1-1-2002"
+        "fecha_creacion": "2023-01-08"
       },
       {
         "id": 10,
@@ -111,10 +84,7 @@ export default async function handler(
         "factura": 6666666666,
         "concepto": "Servicios adicionales",
         "monto": 120,
-        "num_fecha": "1-1-2011",
-        "plazos": "30",
-        "meses": "2",
-        "Vencidas_fechas": "1-1-2002"
+        "fecha_creacion": "2023-10-02"
       }
     ]
     

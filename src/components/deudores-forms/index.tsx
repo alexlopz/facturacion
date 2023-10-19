@@ -1,5 +1,8 @@
 import {
   Button,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   FormControl,
   FormHelperText,
   InputLabel,
@@ -9,11 +12,12 @@ import {
   TextField,
 } from "@mui/material";
 import React, { useState } from "react";
-import PersonSearchTwoToneIcon from '@mui/icons-material/PersonSearchTwoTone';
+import { Ideudores } from "./type";
+import SendIcon from '@mui/icons-material/Send';
 
 
-const FiltroReportes: React.FC<any> = ({}) => {
-  const [formulario, setFormulario] = useState<any>({});
+const DeudoresForms: React.FC<any> = ({ handleSubmit, clientes, formDefault }) => {
+  const [formulario, setFormulario] = useState<Ideudores>(formDefault);
 
   const handleSelectedChange = (event: SelectChangeEvent) => {
     setFormulario({ ...formulario, [event.target.name]: event.target.value });
@@ -22,143 +26,97 @@ const FiltroReportes: React.FC<any> = ({}) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormulario({ ...formulario, [event.target.name]: event.target.value });
   };
+  console.log("formulario", formulario);
 
   const selectStyle = {
     mb: 2,
-    mr: 2,
-    minWidth: 140,
   };
 
   return (
-    <form onSubmit={() => console.log()}>
-      <FormControl sx={{margin: '10px 10px', width: '150px'}}>
-        <InputLabel id="demo-simple-select-label">ID</InputLabel>
+    <form onSubmit={handleSubmit(formulario)}>
+      <FormControl fullWidth sx={selectStyle}>
+        <InputLabel id="demo-simple-select-label">Id</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="cliente"
           value={formulario?.cliente}
           label="Cliente"
           name="cliente"
-          title="Seleccion a un ID"
           onChange={handleSelectedChange}
-          >
-          <MenuItem value={10}>1</MenuItem>
-          <MenuItem value={20}>2</MenuItem>
-          <MenuItem value={30}>3</MenuItem>
+        >
+          {clientes.map((cliente: any, index: number) => (
+            <MenuItem key={index} value={cliente.id}>
+              {cliente.id}
+            </MenuItem>
+          ))}
         </Select>
-        <FormHelperText>Selecciona el Id</FormHelperText>
-      </FormControl>
+        <FormHelperText>Selecciona el Id del Cliente</FormHelperText>
 
-      <FormControl sx={{margin: '10px 35px', width: '150px'}}>
-        <InputLabel id="demo-simple-select-label">Cliente</InputLabel>
+      </FormControl>
+      <FormControl fullWidth sx={selectStyle}>
+        <InputLabel id="demo-simple-select-label">Nombre Cliente</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="factura"
           value={formulario?.factura}
-          label="Documento"
+          label="Factura"
           name="factura"
-          title="Selecciona un Cliente"
           onChange={handleSelectedChange}
         >
-          <MenuItem value={10}>Gasolinera Shell</MenuItem>
-          <MenuItem value={20}>Tienda de comestibles</MenuItem>
-          <MenuItem value={30}>Restaurante La Piazza</MenuItem>
-          <MenuItem value={30}>Taller mecánico AutoFix</MenuItem>
-          <MenuItem value={30}>Farmacia Saludable</MenuItem>
+          {clientes.map((cliente: any, index: number) => (
+            <MenuItem key={index} value={cliente.id}>
+              {cliente.nombre}
+            </MenuItem>
+          ))}
         </Select>
-        <FormHelperText>Selecciona el cliente</FormHelperText>
+        <FormHelperText>Selecciona el Nombre del Cliente</FormHelperText>
 
       </FormControl>
-
-      
-
-      
-
-      <FormControl fullWidth sx={{margin: '10px 10px', width: '160px'}}>
-        <TextField
-          id="outlined-basic"
-          label="Fecha Emisíon"
-          variant="outlined"
-          type="date"
-          required
-          InputLabelProps={{
-            shrink: true,
-          }}
-          onChange={handleChange}
-        />
-        <FormHelperText>Selecciona Emisíon</FormHelperText>
-      </FormControl>
-
-      
-      <FormControl sx={{margin: '10px 20px', width: '160px'}}>
-        <InputLabel id="demo-simple-select-label">Cuotas Pendientes</InputLabel>
+      <FormControl fullWidth sx={selectStyle}>
+        <InputLabel id="demo-simple-select-label">Días Aplazados</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="factura"
           value={formulario?.factura}
-          label="Documento"
+          label="Factura"
           name="factura"
-          title="Selecciona un Cliente"
-          onChange={handleSelectedChange}
-        >
-          <MenuItem value={10}>1</MenuItem>
-          <MenuItem value={20}>2</MenuItem>
-          <MenuItem value={30}>3</MenuItem>
-          <MenuItem value={10}>6</MenuItem>
-          <MenuItem value={20}>4</MenuItem>
-          <MenuItem value={30}>5</MenuItem>
-        </Select>
-        <FormHelperText>Selecciona el cliente</FormHelperText>
-
-      </FormControl>
-
-      
-
-      <FormControl sx={{margin: '10px 10px', width: '150px'}}>
-        <InputLabel id="demo-simple-select-label">Cuota Mensual</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="frecuencia"
-          value={formulario?.frecuencia}
-          label="Fecha"
-          name="frecuencia"
-          title="Selecciona los días Aplazados"
           onChange={handleSelectedChange}
         >
           <MenuItem value={10}>30</MenuItem>
           <MenuItem value={20}>60</MenuItem>
           <MenuItem value={30}>90</MenuItem>
         </Select>
-        <FormHelperText>Selecciona Aplazos</FormHelperText>
+        <FormHelperText>Selecciona los días Aplazados</FormHelperText>
 
       </FormControl>
 
       
 
+     
       <FormControl fullWidth sx={selectStyle}>
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
           
-      <Button 
-  type="submit" 
-  variant="contained" 
-  color="success" 
-  sx={{ 
-    minWidth: '200px',   // Ancho mínimo del botón
-    height: '50px',      // Altura del botón
-    fontSize: '1.5rem',  // Tamaño del texto dentro del botón
-    marginRight: '8px'
-  }}
-  startIcon={<PersonSearchTwoToneIcon />}
->
-  Buscar
-</Button>
-  
+          <Button 
+              type="submit" 
+              variant="contained" 
+              color="success" 
+              style={{ minWidth: '245px', marginRight: '13px' }}
+            
+              startIcon={<SendIcon />}
+              
+            >
+             
+               Guardar
+            </Button>
+            
+          
             
           </div>
 
-      </FormControl>
 
+
+      </FormControl>
     </form>
   );
 };
-export default FiltroReportes;
+export default DeudoresForms;
