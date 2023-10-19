@@ -7,8 +7,8 @@ export default async function handler(
   try {
     const response = [
       {
-        "id": 1,
-        "cliente": "Gasolinera Shell",
+        id: 1,
+        clientes: "Gasolinera Shell",
         "factura": 2132132465,
         "concepto": "Servicios adicionales",
         "monto": 500,
@@ -19,7 +19,7 @@ export default async function handler(
       },
       {
         "id": 2,
-        "cliente": "Tienda de comestibles",
+        clientes: "Tienda de comestibles",
         "factura": 9876543210,
         "concepto": "Servicios legales",
         "monto": 750,
@@ -29,8 +29,8 @@ export default async function handler(
         "meses": "4"
       },
       {
-        "id": 3,
-        "cliente": "Restaurante La Piazza",
+        id: 3,
+        clientes: "Restaurante La Piazza",
         "factura": 4567890123,
         "concepto": "Cheque rechazado",
         "monto": 1200,
@@ -41,7 +41,7 @@ export default async function handler(
       },
       {
         "id": 4,
-        "cliente": "Taller mecánico AutoFix",
+        "clientes": "Taller mecánico AutoFix",
         "factura": 5555555555,
         "concepto": "Servicios legales",
         "monto": 2000,
@@ -52,7 +52,7 @@ export default async function handler(
       },
       {
         "id": 5,
-        "cliente": "Farmacia Saludable",
+        "clientes": "Farmacia Saludable",
         "factura": 1234567890,
         "concepto": "Cheque rechazado",
         "monto": 350,
@@ -63,7 +63,7 @@ export default async function handler(
       },
       {
         "id": 6,
-        "cliente": "Supermercado MegaMart",
+        "clientes": "Supermercado MegaMart",
         "factura": 9999999999,
         "concepto": "Servicios adicionales",
         "monto": 800,
@@ -74,7 +74,7 @@ export default async function handler(
       },
       {
         "id": 7,
-        "cliente": "Hotel Paradise",
+        "clientes": "Hotel Paradise",
         "factura": 7777777777,
         "concepto": "Servicios legales",
         "monto": 1500,
@@ -85,7 +85,7 @@ export default async function handler(
       },
       {
         "id": 8,
-        "cliente": "Librería BookWorld",
+        "clientes": "Librería BookWorld",
         "factura": 4444444444,
         "concepto": "Servicios adicionales",
         "monto": 200,
@@ -96,7 +96,7 @@ export default async function handler(
       },
       {
         "id": 9,
-        "cliente": "Cafetería Espresso",
+        "clientes": "Cafetería Espresso",
         "factura": 8888888888,
         "concepto": "Cheque rechazado",
         "monto": 50,
@@ -107,7 +107,7 @@ export default async function handler(
       },
       {
         "id": 10,
-        "cliente": "Gimnasio FitLife",
+        "clientes": "Gimnasio FitLife",
         "factura": 6666666666,
         "concepto": "Servicios adicionales",
         "monto": 120,

@@ -8,9 +8,9 @@ export default async function handler(
     const response = [
       {
         "id": 1,
-        "cliente": "Gasolinera Shell",
+        cliente: "Gasolinera Shell",
         "factura": 2132132465,
-        "concepto": "Servicios adicionales",
+        "concepto": "Cheque rechazado",
         "monto": 500,
         "num_fecha": "1-1-2002",
         "Vencidas_fechas": "1-1-2002",
@@ -21,7 +21,7 @@ export default async function handler(
         "id": 2,
         "cliente": "Tienda de comestibles",
         "factura": 9876543210,
-        "concepto": "Servicios legales",
+        "concepto": "Pago atrasado",
         "monto": 750,
         "num_fecha": "1-1-2003",
         "Vencidas_fechas": "1-1-2003",
@@ -32,7 +32,7 @@ export default async function handler(
         "id": 3,
         "cliente": "Restaurante La Piazza",
         "factura": 4567890123,
-        "concepto": "Cheque rechazado",
+        "concepto": "Compra de ingredientes",
         "monto": 1200,
         "num_fecha": "1-1-2004",
         "plazos": "60",
@@ -43,7 +43,7 @@ export default async function handler(
         "id": 4,
         "cliente": "Taller mecánico AutoFix",
         "factura": 5555555555,
-        "concepto": "Servicios legales",
+        "concepto": "Reparación de motor",
         "monto": 2000,
         "num_fecha": "1-1-2005",
         "plazos": "90",
@@ -54,7 +54,7 @@ export default async function handler(
         "id": 5,
         "cliente": "Farmacia Saludable",
         "factura": 1234567890,
-        "concepto": "Cheque rechazado",
+        "concepto": "Compra de medicamentos",
         "monto": 350,
         "num_fecha": "1-1-2006",
         "plazos": "30",
@@ -65,7 +65,7 @@ export default async function handler(
         "id": 6,
         "cliente": "Supermercado MegaMart",
         "factura": 9999999999,
-        "concepto": "Servicios adicionales",
+        "concepto": "Compra de víveres",
         "monto": 800,
         "num_fecha": "1-1-2007",
         "plazos": "30",
@@ -76,7 +76,7 @@ export default async function handler(
         "id": 7,
         "cliente": "Hotel Paradise",
         "factura": 7777777777,
-        "concepto": "Servicios legales",
+        "concepto": "Hospedaje de clientes",
         "monto": 1500,
         "num_fecha": "1-1-2008",
         "plazos": "90",
@@ -87,7 +87,7 @@ export default async function handler(
         "id": 8,
         "cliente": "Librería BookWorld",
         "factura": 4444444444,
-        "concepto": "Servicios adicionales",
+        "concepto": "Compra de libros",
         "monto": 200,
         "num_fecha": "1-1-2009",
         "plazos": "60",
@@ -98,7 +98,7 @@ export default async function handler(
         "id": 9,
         "cliente": "Cafetería Espresso",
         "factura": 8888888888,
-        "concepto": "Cheque rechazado",
+        "concepto": "Compra de café",
         "monto": 50,
         "num_fecha": "1-1-2010",
         "plazos": "30",
@@ -109,7 +109,7 @@ export default async function handler(
         "id": 10,
         "cliente": "Gimnasio FitLife",
         "factura": 6666666666,
-        "concepto": "Servicios adicionales",
+        "concepto": "Pago mensual",
         "monto": 120,
         "num_fecha": "1-1-2011",
         "plazos": "30",
@@ -117,7 +117,6 @@ export default async function handler(
         "Vencidas_fechas": "1-1-2002"
       }
     ]
-    
     
     res.status(200).json(response);
   } catch (error) {

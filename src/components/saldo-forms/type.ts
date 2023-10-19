@@ -7,5 +7,6 @@ export interface Isaldos {
     descripcion?: string;
     plazos?: string;
     meses?: string;
+    Vencidas_fechas?: string;
 
   }
