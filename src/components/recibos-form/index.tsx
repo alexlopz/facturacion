@@ -16,6 +16,7 @@ import {
   DialogContent,
   Dialog,
   DialogTitle,
+  Autocomplete,
 } from "@mui/material";
 import React, { useState } from "react";
 import { IReciboss } from "./type";
@@ -62,34 +63,45 @@ const ReciboForm: React.FC<any> = ({ handleSubmit }) => {
     mb: 2,
   };
 
+  const top100Films = [
+    { label: 199412 },
+    { label: 197225 },
+    { label: 197444 },
+    { label: 200855 },
+    { label: 195767 },
+    { label: 199385 },
+    { label: 199465 },
+  ];
+  const top100Films2 = [
+    { label: 8994127 },
+    { label: 2972254 },
+    { label: 3974445 },
+    { label: 5008556 },
+    { label: 8957674 },
+    { label: 4993852 },
+    { label: 1994651 },
+  ];
+
   return (
     <form onSubmit={handleSubmit(formulario)}>
 
       <Grid container columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
         <Grid item xs={6}>
-          <TextField
-            required
-            sx={{ mb: 2 }}
-            label="Codigo Cliente"
-            variant="outlined"
-            id="outlined-disabled"
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={top100Films}
+            renderInput={(params) => <TextField required {...params} label="Codigo Cliente" />}
           />
         </Grid>
         <Grid item xs={6}>
           <FormControl fullWidth sx={selectStyle} required>
-            <InputLabel id="demo-simple-select-label">Codigo Cobrador</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="codCobrador"
-              value={formulario?.codCobrador}
-              label="Codigo Cobrador"
-              name="codCobrador"
-              onChange={handleSelectedChange}
-            >
-              <MenuItem value={10}>2544</MenuItem>
-              <MenuItem value={20}>2545</MenuItem>
-              <MenuItem value={30}>2872</MenuItem>
-            </Select>
+            <Autocomplete
+              disablePortal
+              id="combo-box-demo"
+              options={top100Films2}
+              renderInput={(params) => <TextField required {...params} label="Codigo Cobrador" />}
+            />
           </FormControl>
         </Grid>
       </Grid>
@@ -194,18 +206,12 @@ const ReciboForm: React.FC<any> = ({ handleSubmit }) => {
           <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
             <Grid item xs={6}>
               <FormControl fullWidth sx={{ mb: 2, minWidth: 120 }} required>
-                <InputLabel id="demo-simple-select-label">#Factura</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  label="Factura"
-                  name="codFactura"
-                  onChange={handleSelectedChange}
-                  margin="none"
-                  autoWidth        >
-                  <MenuItem value={10}>12457893</MenuItem>
-                  <MenuItem value={20}>33654788</MenuItem>
-                  <MenuItem value={30}>45487952</MenuItem>
-                </Select>
+                <Autocomplete
+                  disablePortal
+                  id="combo-box-demo"
+                  options={top100Films2}
+                  renderInput={(params) => <TextField required {...params} label="Codigo Factura" />}
+                />
               </FormControl>
             </Grid>
             <Grid item xs={6}>
@@ -239,7 +245,7 @@ const ReciboForm: React.FC<any> = ({ handleSubmit }) => {
               />
             </Grid>
             <Grid item xs={6}>
-            <TextField
+              <TextField
                 helperText=""
                 fullWidth sx={{ mb: 1, }}
                 type="text"
@@ -248,7 +254,7 @@ const ReciboForm: React.FC<any> = ({ handleSubmit }) => {
                 variant="outlined"
                 id="outlined-disabled"
                 disabled
-              />              
+              />
             </Grid>
           </Grid>
 
@@ -257,7 +263,7 @@ const ReciboForm: React.FC<any> = ({ handleSubmit }) => {
             rowSpacing={1}
             columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
             <Grid item xs={6}>
-            <TextField
+              <TextField
                 helperText=""
                 fullWidth
                 sx={{ mb: 1, }}

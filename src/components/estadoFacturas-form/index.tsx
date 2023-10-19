@@ -11,6 +11,9 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Grid,
+  FormHelperText,
+  Autocomplete,
 } from "@mui/material";
 import React, { useState } from "react";
 import { IEstadoFactura } from "./type";
@@ -37,90 +40,106 @@ const EstadoFacturaForm: React.FC<any> = ({ handleSubmit }) => {
   console.log("formulario", formulario);
 
   const selectStyle = {
-    mb: 2,
+    
+    mr: 2,
+    ml: 1,
+    minWidth: 150,
   };
+  const top100Films = [
+    { label: 199412 },
+    { label: 197225 },
+    { label: 197444 },
+    { label: 200855 },
+    { label: 195767 },
+    { label: 199385 },
+    { label: 199465 },
+  ];
 
   return (
     <form onSubmit={handleSubmit(formulario)}>
 
-<FormControl fullWidth sx={selectStyle}>
-        <InputLabel id="demo-simple-select-label">Codigo Cliente</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="codCliente"
-          value={formulario?.codCliente}
-          label="Codigo Cliente"
-          name="codCliente"
-          onChange={handleSelectedChange}
-        >
-          <MenuItem value={10}>105478</MenuItem>
-          <MenuItem value={20}>102547</MenuItem>
-          <MenuItem value={30}>124898</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl fullWidth sx={selectStyle}>
-        <InputLabel id="demo-simple-select-label">Estado Factura</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="estadoFactura"
-          value={formulario?.estadoFactura}
-          label="Estado Factura"
-          name="estadoFactura"
-          onChange={handleSelectedChange}
-        >
-          <MenuItem value={10}>VENCIDA</MenuItem>
-          <MenuItem value={20}>ACTIVA</MenuItem>
-          <MenuItem value={30}>CANCELADA</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl fullWidth sx={selectStyle}>
-      <TextField
-          id="outlined-basic"
-          label="Fecha Inicio"
-          variant="outlined"
-          type="date"
-          required
-          InputLabelProps={{
-            shrink: true,
-          }}
-          onChange={handleChange}
-        />
-      </FormControl>
-      <FormControl fullWidth sx={selectStyle}>
-      <TextField
-          id="outlined-basic"
-          label="Fecha Final"
-          variant="outlined"
-          type="date"
-          required
-          InputLabelProps={{
-            shrink: true,
-          }}
-          onChange={handleChange}
-        />
-      </FormControl>
-      <TableContainer sx={selectStyle}>
-<Table>
-  <TableHead>
-    <TableRow>
-      <TableCell align="center">
-      <FormControl>
-        <Button type="submit" variant="contained" color="success" startIcon={<SearchRoundedIcon/>} >
-          BUSCAR
-        </Button>
-      </FormControl>
-      </TableCell>
-      <TableCell align="center">
-      <FormControl>
-        <Button type="submit" variant="contained" color="error" startIcon={<DeleteRoundedIcon/>}>
-          LIMPIAR
-        </Button>
-      </FormControl>
-      </TableCell>
-    </TableRow>
-  </TableHead>
-</Table>
-      </TableContainer>
+      <Grid container justifyContent={"center"} sx={{ mb: 3 }}>
+        <Grid item>
+          <FormControl sx={selectStyle} >
+            <Autocomplete
+              disablePortal
+              id="combo-box-demo"
+              options={top100Films}
+              renderInput={(params) => <TextField required {...params} label="Codigo Cliente" />}
+            />
+            <FormHelperText>Ingrese un codigo</FormHelperText>
+          </FormControl>
+        </Grid>
+
+        <Grid item>
+          <FormControl sx={selectStyle} required>
+            <InputLabel id="demo-simple-select-label">Estado Factura</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="estadoRecibo"
+              value={formulario?.estadoFactura}
+              label="Estado Recibo"
+              name="estadoRecibo"
+              onChange={handleSelectedChange}
+            >
+              <MenuItem value={10}>ACTIVO</MenuItem>
+              <MenuItem value={20}>ANULADO</MenuItem>
+              <MenuItem value={30}>APLICADO</MenuItem>
+            </Select>
+            <FormHelperText>Seleccione un estado</FormHelperText>
+          </FormControl>
+        </Grid>
+
+
+        <Grid item>
+          <FormControl sx={selectStyle}>
+            <TextField
+              id="outlined-basic"
+              label="Fecha Inicio"
+              variant="outlined"
+              type="date"
+              required
+              helperText="Clic en el calendario"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              onChange={handleChange}
+            />
+          </FormControl>
+        </Grid>
+
+        <Grid item>
+          <FormControl sx={selectStyle}>
+            <TextField
+              id="outlined-basic"
+              label="Fecha Fin"
+              variant="outlined"
+              type="date"
+              required
+              helperText="Clic en el calendario"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              onChange={handleChange}
+            />
+          </FormControl>
+        </Grid>
+      </Grid>
+
+      <Grid container justifyContent={"center"} sx={{ mb: 2 }}>
+        <Grid item sx={{ mb: 2, mr: 1 }}>
+          <center><Button variant="contained" color="success" startIcon={<SearchRoundedIcon />}>
+            BUSCAR
+          </Button>
+          </center>
+        </Grid>
+        <Grid item >
+          <center><Button variant="contained" color="error" startIcon={<DeleteRoundedIcon />}>
+            LIMPIAR
+          </Button>
+          </center>
+        </Grid>
+      </Grid>
     </form>
   );
 };
