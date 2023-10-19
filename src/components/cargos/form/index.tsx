@@ -71,6 +71,7 @@ const CargosForm: React.FC<any> = ({
           Puedes buscar por nombre o apellido del cliente
         </FormHelperText>
       </FormControl>
+      
       <Grid container spacing={2}>
         <Grid item xs={12} sm={12} md={12} lg={6}>
           <FormControl fullWidth sx={selectStyle}>
@@ -85,6 +86,8 @@ const CargosForm: React.FC<any> = ({
             />
           </FormControl>
         </Grid>
+
+
         <Grid item xs={12} sm={12} md={12} lg={6}>
           <FormControl fullWidth sx={selectStyle}>
             <InputLabel id="demo-simple-select-label">Concepto</InputLabel>

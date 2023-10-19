@@ -18,11 +18,6 @@ import SendIcon from '@mui/icons-material/Send';
 
 
 
-
-
-
-
-
 const DebitoForms: React.FC<any> = ({ handleSubmit, clientes, formDefault }) => {
   const [formulario, setFormulario] = useState<Idebito>(formDefault);
 
@@ -49,11 +44,8 @@ const DebitoForms: React.FC<any> = ({ handleSubmit, clientes, formDefault }) => 
           value={formulario?.cliente}
           label="Cliente"
           name="cliente"
-         
           onChange={handleSelectedChange}
           
-          
-
         >
           {clientes.map((cliente: any, index: number) => (
             <MenuItem key={index} value={cliente.id}>
@@ -98,7 +90,7 @@ const DebitoForms: React.FC<any> = ({ handleSubmit, clientes, formDefault }) => 
           variant="outlined"
           placeholder="00.00"
           type="number"
-          title="hola"  // poner texto al poner el mouse
+          title="Ingresa un Monto"  // poner texto al poner el mouse
           required
           helperText="Ingresa el Monto a debitar"
           onChange={handleChange}
