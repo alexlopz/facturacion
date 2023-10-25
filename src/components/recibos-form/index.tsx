@@ -1,47 +1,28 @@
 import {
-  Button,
   FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
   SelectChangeEvent,
   TextField,
-  Table,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
   Grid,
-  DialogActions,
-  DialogContent,
-  Dialog,
-  DialogTitle,
   Autocomplete,
+  FormHelperText,
 } from "@mui/material";
 import React, { useState } from "react";
-import { IReciboss } from "./type";
+import { IRecibos } from "./type";
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
-const formDefault: IReciboss = {
-  codCliente: "",
-  nomCliente: "",
-  codCobrador: "",
-  nombCobrador: "",
-  fecha: "",
-  razonSocial: "",
-  concepto: "",
-  tipoPago: "",
-  fechaCheque: "",
-  numCheque: "",
-  banco: "",
-};
-
-const ReciboForm: React.FC<any> = ({ handleSubmit }) => {
-  const [formulario, setFormulario] = useState<IReciboss>(formDefault);
+const ReciboForm: React.FC<any> = ({
+  handleSubmit,
+  empleados,
+  facturas,
+  formDefault }) => {
+  const [formulario, setFormulario] = useState<IRecibos>(formDefault);
 
   const handleSelectedChange = (event: SelectChangeEvent) => {
+    setFormulario({ ...formulario, [event.target.name]: event.target.value });
+  };
+
+  const handleSelectedChangeAuto = (event: any) => {
     setFormulario({ ...formulario, [event.target.name]: event.target.value });
   };
 
@@ -50,141 +31,32 @@ const ReciboForm: React.FC<any> = ({ handleSubmit }) => {
   };
 
   console.log("formulario", formulario);
-  const [open, setOpen] = React.useState(false);
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const selectStyle = {
+    const selectStyle = {
     mb: 2,
   };
 
-  const top100Films = [
-    { label: 199412 },
-    { label: 197225 },
-    { label: 197444 },
-    { label: 200855 },
-    { label: 195767 },
-    { label: 199385 },
-    { label: 199465 },
-  ];
-  const top100Films2 = [
-    { label: 8994127 },
-    { label: 2972254 },
-    { label: 3974445 },
-    { label: 5008556 },
-    { label: 8957674 },
-    { label: 4993852 },
-    { label: 1994651 },
-  ];
-
+  
   return (
     <form onSubmit={handleSubmit(formulario)}>
 
       <Grid container columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
-        <Grid item xs={6}>
-          <Autocomplete
-            disablePortal
-            id="combo-box-demo"
-            options={top100Films}
-            renderInput={(params) => <TextField required {...params} label="Codigo Cliente" />}
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <FormControl fullWidth sx={selectStyle} required>
+        <Grid item xs={6} justifyContent={"center"} alignContent={"center"} alignItems={"center"}>
+          <FormControl sx={{ width: "300px" }} required>
             <Autocomplete
               disablePortal
-              id="combo-box-demo"
-              options={top100Films2}
-              renderInput={(params) => <TextField required {...params} label="Codigo Cobrador" />}
+              id="nombre"
+              options={empleados}
+              getOptionLabel={(Option: any) => Option.nombre}
+              renderInput={(params) => (<TextField required {...params} name="empleado" label="Cobrador" />)}
             />
+            <FormHelperText>
+              Ingrese nombre o codigo
+            </FormHelperText>
           </FormControl>
         </Grid>
       </Grid>
-
-      <TextField
-        fullWidth
-        sx={selectStyle}
-        label="Nombre Cliente"
-        value={"Example"}
-        type="text"
-        variant="outlined"
-        disabled
-        id="outlined-disabled"
-      />
-      <Grid container columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
-        <Grid item xs={6}>
-          <TextField
-            fullWidth
-            sx={{ mb: 1, }}
-            helperText="Clic en el calendario"
-            type="date"
-            variant="outlined"
-            id="outlined-disabled"
-            required
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <FormControl fullWidth sx={selectStyle} required>
-            <InputLabel id="demo-simple-select-label">Concepto</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="concepto"
-              value={formulario?.concepto}
-              label="Concepto del Recibo"
-              name="concepto"
-              required
-              onChange={handleSelectedChange}
-            >
-              <MenuItem value={10}>Abono</MenuItem>
-              <MenuItem value={20}>Cancelación</MenuItem>
-            </Select>
-          </FormControl>
-        </Grid>
-      </Grid>
-
-      <Grid container columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
-        <Grid item xs={6}>
-          <FormControl fullWidth sx={selectStyle} required>
-            <InputLabel id="demo-simple-select-label">Tipo de Pago</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="tipoPago"
-              value={formulario?.tipoPago}
-              label="Tipo de Pago"
-              name="tipoPago"
-              onChange={handleSelectedChange}
-            >
-              <MenuItem value={10}>Efectivo</MenuItem>
-              <MenuItem value={20}>Tarjeta</MenuItem>
-              <MenuItem value={20}>Transferencia</MenuItem>
-            </Select>
-          </FormControl>
-        </Grid>
-        <Grid item xs={6}>
-          <FormControl fullWidth sx={selectStyle}>
-            <InputLabel id="demo-simple-select-label">Banco</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="banco"
-              value={formulario?.banco}
-              label="Banco"
-              name="banco"
-              onChange={handleSelectedChange}
-            >
-              <MenuItem value={10}>Banco Agromercantil</MenuItem>
-              <MenuItem value={20}>Banco Industrial</MenuItem>
-              <MenuItem value={20}>Banco G&T</MenuItem>
-              <MenuItem value={20}>Banco de Antigua</MenuItem>
-            </Select>
-          </FormControl>
-        </Grid>
-      </Grid>
-
+{/*
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
         <Grid item xs={6}>
           <center><Button onClick={handleClickOpen} type="submit" variant="contained" color="success" startIcon={<CheckCircleIcon />}>
@@ -199,7 +71,7 @@ const ReciboForm: React.FC<any> = ({ handleSubmit }) => {
           </center>
         </Grid>
       </Grid>
-
+  
       <Dialog open={open} onClose={handleClose} fullWidth>
         <DialogTitle>Crear Recibos</DialogTitle>
         <DialogContent dividers>
@@ -290,7 +162,7 @@ const ReciboForm: React.FC<any> = ({ handleSubmit }) => {
           <Button variant="contained" color="success" startIcon={<CheckCircleIcon />}>GRABAR</Button>
         </DialogActions>
       </Dialog>
-
+*/}
 
 
     </form>

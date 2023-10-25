@@ -4,7 +4,7 @@ import EstadoReciboForm from "../../src/components/estadoRecibos-form";
 import DataTable from "../../src/components/data-table";
 import DashboardLayout from "../../src/layout/DashboardLayout";
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
-import RemoveRedEyeRoundedIcon from '@mui/icons-material/RemoveRedEyeRounded';
+import NoteAltOutlinedIcon from '@mui/icons-material/NoteAltOutlined';
 
 
 const columns: GridColDef[] = [
@@ -24,9 +24,9 @@ const columns: GridColDef[] = [
         color="primary"
         size="small"
       >
-        <RemoveRedEyeRoundedIcon />
+        <NoteAltOutlinedIcon />
       </Button>
-    ], headerName: "Detalle"
+    ], headerName: "Modificar"
   },
   {
     field: "actions2",

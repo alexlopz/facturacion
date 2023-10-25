@@ -1,6 +1,6 @@
-export interface IReciboss {
+export interface IRecibos {
   id?: string;
-  codCliente?: string;
+  codempleado?: string;
   nomCliente?: string;
   codCobrador?: string;
   nombCobrador?: string;
@@ -9,6 +9,6 @@ export interface IReciboss {
   concepto?: string;
   tipoPago?: string;
   fechaCheque?: string;
-  numCheque?: string;
+  factura?: string;
   banco?: string;
   }
