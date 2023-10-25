@@ -5,7 +5,6 @@ export const getClientes = async (): Promise<IPlainObject> => {
 
   try {
     const response = await fetch(url);
-
     if (response.ok && response.status === 200) {
       return response.json();
     } else {

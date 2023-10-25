@@ -46,7 +46,7 @@ const VisalinkForm: React.FC<any> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit(formulario)}>
+    <form onSubmit={(event) => handleSubmit(event, formulario)}>
       <Box
         sx={{
           display: "flex",
@@ -69,6 +69,7 @@ const VisalinkForm: React.FC<any> = ({
           placeholder="Descripcion del pago"
           type="text"
           required
+          name={'descripcion'}
           onChange={handleChange}
         />
       </FormControl>
@@ -84,6 +85,7 @@ const VisalinkForm: React.FC<any> = ({
               type="number"
               required
               onChange={handleChangeNumeric}
+              name={'monto'}
               error={errors?.monto != undefined}
               helperText={errors?.monto}
             />

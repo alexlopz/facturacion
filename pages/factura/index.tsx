@@ -1,4 +1,4 @@
-import { Card, CardContent, Grid } from "@mui/material";
+import { Button, Card, CardContent, Grid } from "@mui/material";
 import { GetServerSideProps } from "next";
 import DashboardLayout from "../../src/layout/DashboardLayout";
 import { getClientes } from "../../src/services/clientes";
@@ -7,6 +7,7 @@ import { useState } from "react";
 import FacturaForm from "../../src/components/factura/form";
 import { getProductos } from "../../src/services/productos";
 import FacturaTable from "../../src/components/factura/table";
+import { crearFactura } from "../../src/services/facturas";
 
 const formDefault: ICargo = {
   cliente: "",
@@ -25,6 +26,10 @@ const Factura: React.FC<any> = ({ clientes, productos }) => {
     setFormulario(params);
   };
 
+  const guardar = async (cliente: any) => {
+    console.log("pagina", cliente);
+  };
+
   const styleTable = { height: "100%" };
   return (
     <DashboardLayout title={"Factura"}>
@@ -34,7 +39,7 @@ const Factura: React.FC<any> = ({ clientes, productos }) => {
             <CardContent>
               <FacturaForm
                 clientes={clientes}
-                handleSubmit={(e: any) => console.log("eee", e)}
+                handleSubmit={guardar}
                 formDefault={formulario}
               />
             </CardContent>
@@ -43,10 +48,13 @@ const Factura: React.FC<any> = ({ clientes, productos }) => {
         <Grid item xs={12} md={7}>
           <Card variant="outlined" sx={styleTable}>
             <CardContent>
-             <FacturaTable productos={productos}  />
+              <FacturaTable productos={productos} />
             </CardContent>
           </Card>
         </Grid>
+        <Button variant="contained" color="primary" onClick={guardar}>
+          LIMPIAR
+        </Button>
       </Grid>
     </DashboardLayout>
   );

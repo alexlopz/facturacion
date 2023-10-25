@@ -10,11 +10,14 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { Isaldos } from "./type";
-import SendIcon from '@mui/icons-material/Send';
-import PersonOutlineTwoToneIcon from '@mui/icons-material/PersonOutlineTwoTone';
+import SendIcon from "@mui/icons-material/Send";
+import PersonOutlineTwoToneIcon from "@mui/icons-material/PersonOutlineTwoTone";
 
-
-const SaldosForms: React.FC<any> = ({ handleSubmit, clientes, formDefault }) => {
+const SaldosForms: React.FC<any> = ({
+  handleSubmit,
+  clientes,
+  formDefault,
+}) => {
   const [formulario, setFormulario] = useState<Isaldos>(formDefault);
 
   const handleSelectedChange = (event: SelectChangeEvent) => {
@@ -31,7 +34,7 @@ const SaldosForms: React.FC<any> = ({ handleSubmit, clientes, formDefault }) => 
   };
 
   return (
-    <form onSubmit={handleSubmit(formulario)}>
+    <>
       <FormControl fullWidth sx={selectStyle}>
         <InputLabel id="demo-simple-select-label">Id</InputLabel>
         <Select
@@ -61,7 +64,7 @@ const SaldosForms: React.FC<any> = ({ handleSubmit, clientes, formDefault }) => 
           label="Factura"
           name="factura"
           onChange={handleSelectedChange}
-        > 
+        >
           {clientes.map((cliente: any, index: number) => (
             <MenuItem key={index} value={cliente.id}>
               {cliente.nombre}
@@ -71,8 +74,6 @@ const SaldosForms: React.FC<any> = ({ handleSubmit, clientes, formDefault }) => 
         <FormHelperText>Selecciona el Nombre del Cliente</FormHelperText>
       </FormControl>
       <FormControl fullWidth sx={selectStyle}>
-
-
         <InputLabel id="demo-simple-select-label">Dias Aplazados</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -87,32 +88,28 @@ const SaldosForms: React.FC<any> = ({ handleSubmit, clientes, formDefault }) => 
           <MenuItem value={30}>90</MenuItem>
         </Select>
         <FormHelperText>Selecciona los dias Aplazados</FormHelperText>
-
       </FormControl>
 
-      
-
-     
       <FormControl fullWidth sx={selectStyle}>
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
-          
-          <Button 
-              type="submit" 
-              variant="contained" 
-              color="success" 
-              style={{ minWidth: '245px', marginRight: '13px' }}
-            
-              startIcon={<SendIcon />}
-            >
-               Guardar
-            </Button>
-  
-            
-          </div>
-
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "1rem",
+          }}
+        >
+          <Button
+            variant="contained"
+            color="success"
+            style={{ minWidth: "245px", marginRight: "13px" }}
+            onClick={(e) => handleSubmit(e, formulario)}
+            startIcon={<SendIcon />}
+          >
+            Guardar
+          </Button>
+        </div>
       </FormControl>
-
-    </form>
+    </>
   );
 };
 export default SaldosForms;

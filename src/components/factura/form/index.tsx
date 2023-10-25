@@ -14,7 +14,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ICargo } from "./type";
 import SendIcon from "@mui/icons-material/Send";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -29,32 +29,23 @@ import { IProducto } from "../../../definitions/IProducto";
 const FacturaForm: React.FC<any> = ({
   handleSubmit,
   clientes,
-  productos,
   formDefault,
 }) => {
   const [formulario, setFormulario] = useState<ICargo>(formDefault);
   const [cliente, setCliente] = useState<ICliente>();
-  const [producto, setProducto] = useState<IProducto>();
-  const handleSelectedChange = (event: SelectChangeEvent) => {
-    setFormulario({ ...formulario, [event.target.name]: event.target.value });
-  };
-
-  const handleSelectedChangeAuto = (event: any) => {
-    setFormulario({ ...formulario, [event.target.name]: event.target.value });
-  };
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFormulario({ ...formulario, [event.target.name]: event.target.value });
-  };
-  console.log("formulario", formulario);
-
-  const selectStyle = {
-    mb: 4,
-  };
 
   console.log("cliente", cliente);
+  const handleChange = (event: any, value: ICliente) => {
+    setCliente(value);
+  }
+
+  useEffect(() => {
+    if (cliente) {
+      handleSubmit(cliente)
+    }
+  },[cliente])
   return (
-    <form onSubmit={handleSubmit(formulario)}>
+    <form>
       <Box
         sx={{
           display: "flex",
@@ -77,9 +68,7 @@ const FacturaForm: React.FC<any> = ({
               getOptionLabel={(option: any) =>
                 `${option.nombre} - ${option.nit}`
               }
-              onChange={(event: any, value: ICliente) => {
-                setCliente(value);
-              }}
+              onChange={(event: any, value: ICliente) => handleChange(event, value)}
               renderInput={(params) => (
                 <TextField {...params} name="cliente" label="Cliente" />
               )}
@@ -137,44 +126,7 @@ const FacturaForm: React.FC<any> = ({
               </CardContent>
             </Card>
           )}
-          {/* <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              height: "50px",
-              mt: 2,
-            }}
-          >
-            <Button
-              type="submit"
-              variant="contained"
-              color="success"
-              fullWidth
-              startIcon={<SendIcon />}
-            >
-              Guardar
-            </Button>
-          </Box> */}
         </Grid>
-        {/* <Grid item xs={12} sm={12} md={12} lg={8}>
-          <FormControl fullWidth sx={{ mt: 2, minWidth: 300 }}>
-            <Autocomplete
-              disablePortal
-              id="Producto"
-              options={productos}
-              getOptionLabel={(option: any) =>
-                `${option.nombre} - ${option.sku}`
-              }
-              onChange={(event: any, value: IProducto) => {
-                setProducto(value);
-              }}
-              renderInput={(params) => (
-                <TextField {...params} name="producto" label="Productos" />
-              )}
-            />
-            <FormHelperText>Puedes buscar por nombre o sku</FormHelperText>
-          </FormControl>
-        </Grid> */}
       </Grid>
     </form>
   );
