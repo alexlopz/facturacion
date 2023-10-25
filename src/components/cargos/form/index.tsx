@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { ICargo } from "./type";
-import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
+import SendIcon from '@mui/icons-material/Send';
 
 const CargosForm: React.FC<any> = ({
   handleSubmit,
@@ -110,7 +110,7 @@ const CargosForm: React.FC<any> = ({
           variant="contained"
           color="success"
           fullWidth
-          startIcon={<SaveOutlinedIcon />}
+          startIcon={<SendIcon />}
         >
           Guardar
         </Button>

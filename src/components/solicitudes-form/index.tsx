@@ -104,7 +104,7 @@ const SolicitudesForm: React.FC<any> = ({
             </FormControl>
             <Box sx={{ display: "flex", justifyContent: "center", width: "100%", mt: "5px" }}>
 
-                <FormControl  sx={selectStyle}>
+                <FormControl  sx={{...selectStyle}}>
                     <Button type="submit" variant="contained" color="success" startIcon={<SendIcon />}>
                         Enviar Solicitud
                     </Button>

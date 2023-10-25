@@ -1,6 +1,9 @@
 import {
+  Autocomplete,
+  Box,
   Button,
   FormControl,
+  FormHelperText,
   InputLabel,
   MenuItem,
   Select,
@@ -9,7 +12,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 
-const FiltroReportes: React.FC<any> = ({}) => {
+const FiltroReportes: React.FC<any> = ({ clientes }) => {
   const [formulario, setFormulario] = useState<any>({});
 
   const handleSelectedChange = (event: SelectChangeEvent) => {
@@ -28,7 +31,23 @@ const FiltroReportes: React.FC<any> = ({}) => {
 
   return (
     <form onSubmit={() => console.log()}>
-      <FormControl sx={selectStyle}>
+      <FormControl sx={{...selectStyle}}>
+        <InputLabel id="demo-simple-select-label">Tipo</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="tipo"
+          value={formulario?.cliente}
+          label="Tipo"
+          name="tipo"
+          onChange={handleSelectedChange}
+        >
+          <MenuItem value="Gasolinera Shell">Reporte 1</MenuItem>
+          <MenuItem value="Gasolinera Shell">Reporte 2</MenuItem>
+          <MenuItem value="Gasolinera Shell">Reporte 3</MenuItem>
+
+        </Select>
+      </FormControl>
+      <FormControl sx={{...selectStyle, minWidth: 300}}>
         <InputLabel id="demo-simple-select-label">Cliente</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -37,7 +56,24 @@ const FiltroReportes: React.FC<any> = ({}) => {
           label="Cliente"
           name="cliente"
           onChange={handleSelectedChange}
-        ></Select>
+        >
+          <MenuItem value="Gasolinera Shell">Gasolinera Shell</MenuItem>
+          <MenuItem value="Supermercado Mega">Supermercado Mega</MenuItem>
+          <MenuItem value="Restaurante La Piazza">
+            Restaurante La Piazza
+          </MenuItem>
+          <MenuItem value="Tienda de electrónicos TecnoWorld">
+            Tienda de electrónicos TecnoWorld
+          </MenuItem>
+          <MenuItem value="Farmacia SaludPlus">Farmacia SaludPlus</MenuItem>
+          <MenuItem value="Hotel Paradise">Hotel Paradise</MenuItem>
+          <MenuItem value="Taller Mecánico AutoFix">
+            Taller Mecánico AutoFix
+          </MenuItem>
+          <MenuItem value="Librería Book Haven">Librería Book Haven</MenuItem>
+          <MenuItem value="Panadería El Horno">Panadería El Horno</MenuItem>
+          <MenuItem value="Gimnasio FitLife">Gimnasio FitLife</MenuItem>
+        </Select>
       </FormControl>
       <FormControl sx={selectStyle}>
         <InputLabel id="demo-simple-select-label">Documento</InputLabel>
@@ -49,9 +85,10 @@ const FiltroReportes: React.FC<any> = ({}) => {
           name="factura"
           onChange={handleSelectedChange}
         >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value={10}>Factura</MenuItem>
+          <MenuItem value={20}>Recibo</MenuItem>
+          <MenuItem value={30}>Nota credito</MenuItem>
+          <MenuItem value={30}>Solicitud de credito</MenuItem>
         </Select>
       </FormControl>
       <FormControl sx={selectStyle}>
@@ -64,9 +101,9 @@ const FiltroReportes: React.FC<any> = ({}) => {
           name="metodo"
           onChange={handleSelectedChange}
         >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value={10}>45781265</MenuItem>
+          <MenuItem value={20}>89562312</MenuItem>
+          <MenuItem value={30}>87459523</MenuItem>
         </Select>
       </FormControl>
       <FormControl sx={selectStyle}>
@@ -79,18 +116,18 @@ const FiltroReportes: React.FC<any> = ({}) => {
           name="frecuencia"
           onChange={handleSelectedChange}
         >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value={10}>PENDIENTE</MenuItem>
+          <MenuItem value={20}>ACTIVO</MenuItem>
+          <MenuItem value={30}>AUTORIZADO</MenuItem>
         </Select>
       </FormControl>
-      <FormControl sx={selectStyle}>
+      {/* <FormControl sx={selectStyle}>
         <InputLabel id="demo-simple-select-label">Fecha</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="frecuencia"
           value={formulario?.frecuencia}
-          label="Fecha"
+          label="RANGO DE FECHAS"
           name="frecuencia"
           onChange={handleSelectedChange}
         >
@@ -98,6 +135,19 @@ const FiltroReportes: React.FC<any> = ({}) => {
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
+      </FormControl> */}
+            <FormControl sx={selectStyle}>
+      <TextField
+          id="outlined-basic"
+          label="Rango de Fechas"
+          variant="outlined"
+          type="date"
+          required
+          InputLabelProps={{
+            shrink: true,
+          }}
+          onChange={handleChange}
+        />
       </FormControl>
       <FormControl sx={selectStyle}>
         <InputLabel id="demo-simple-select-label">Dias credito</InputLabel>
@@ -113,18 +163,6 @@ const FiltroReportes: React.FC<any> = ({}) => {
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
-      </FormControl>
-      <FormControl fullWidth sx={{ width: "auto", mb: 2 }}>
-        <TextField
-          id="outlined-basic"
-          label="Buscar"
-          name={"nombre"}
-          variant="outlined"
-          placeholder="Identificador del link"
-          type="text"
-          required
-          onChange={handleChange}
-        />
       </FormControl>
     </form>
   );

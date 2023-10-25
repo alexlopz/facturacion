@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { IRecordatorio } from "./type";
+import SendIcon from '@mui/icons-material/Send';
 
 const formDefault: IRecordatorio = {
   cliente: "",
@@ -132,7 +133,13 @@ const RecordatoriosForm: React.FC<any> = ({
         </Grid>
       </Grid>
       <FormControl fullWidth sx={selectStyle}>
-        <Button type="submit" variant="contained" color="success">
+        <Button
+          type="submit"
+          variant="contained"
+          color="success"
+          fullWidth
+          startIcon={<SendIcon />}
+        >
           Guardar
         </Button>
       </FormControl>

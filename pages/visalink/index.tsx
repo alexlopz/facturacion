@@ -30,6 +30,10 @@ const VisaLink: React.FC<any> = ({ pagos }) => {
   const verDato = (formulario: IRecordatorio) => {
     console.log("formulario-rec", formulario);
   };
+  const datoPorGuardar = (event: React.ChangeEvent<HTMLFormElement>,formulario: any) => {
+    event?.preventDefault()
+    console.log('formulario en pagina', formulario)
+  }
 
   const styleTable = { height: "100%" };
   return (
@@ -39,7 +43,7 @@ const VisaLink: React.FC<any> = ({ pagos }) => {
           <Card variant="outlined" sx={styleTable}>
             <CardContent>
               <VisalinkForm
-                handleSubmit={() => console.log("click")}
+                handleSubmit={datoPorGuardar}
                 facturas={pagos}
               />
             </CardContent>

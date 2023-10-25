@@ -28,7 +28,7 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 
 export const mainListItems = (
   <React.Fragment>
-    <Link underline="none" color="inherit" href={`/`}>
+    {/* <Link underline="none" color="inherit" href={`/`}>
       <ListItemButton>
         <ListItemIcon>
           <Home />
@@ -47,7 +47,7 @@ export const mainListItems = (
         <PeopleIcon />
       </ListItemIcon>
       <ListItemText primary="Customers" />
-    </ListItemButton>
+    </ListItemButton> */}
 
     <Link underline="none" color="inherit" href={`/Rutas`}>
     <ListItemButton>

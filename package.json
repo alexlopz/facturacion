@@ -17,12 +17,15 @@
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
     "@mui/x-data-grid": "^6.12.1",
+    "dotenv": "^16.3.1",
     "next": "latest",
+    "pg": "^8.11.3",
     "react": "latest",
     "react-dom": "latest"
   },
   "devDependencies": {
     "@types/node": "latest",
+    "@types/pg": "^8.10.7",
     "@types/react": "latest",
     "eslint": "latest",
     "eslint-config-next": "latest",

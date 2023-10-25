@@ -6,11 +6,9 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    const response = await db.query('SELECT * FROM CLIENTE');
+    const response = await db.query("SELECT * FROM PRODUCTO");
     res.status(200).json(response.rows);
   } catch (error) {
-    console.log('error', error)
-    res.status(500).json({ error: 'Hubo un error en la consulta a la base de datos.' });
-
+    res.status(200).json({});
   }
 }

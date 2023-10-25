@@ -11,6 +11,7 @@ import {
 import React, { useState } from "react";
 import { regex } from "../../../utilities/regex";
 import { IMonto } from "./type";
+import SendIcon from "@mui/icons-material/Send";
 
 const VisalinkForm: React.FC<any> = ({
   handleSubmit,
@@ -45,7 +46,7 @@ const VisalinkForm: React.FC<any> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit(formulario)}>
+    <form onSubmit={(event) => handleSubmit(event, formulario)}>
       <Box
         sx={{
           display: "flex",
@@ -68,6 +69,7 @@ const VisalinkForm: React.FC<any> = ({
           placeholder="Descripcion del pago"
           type="text"
           required
+          name={'descripcion'}
           onChange={handleChange}
         />
       </FormControl>
@@ -83,6 +85,7 @@ const VisalinkForm: React.FC<any> = ({
               type="number"
               required
               onChange={handleChangeNumeric}
+              name={'monto'}
               error={errors?.monto != undefined}
               helperText={errors?.monto}
             />
@@ -104,7 +107,13 @@ const VisalinkForm: React.FC<any> = ({
       </Grid>
 
       <FormControl fullWidth sx={selectStyle}>
-        <Button type="submit" variant="contained" color="success">
+        <Button
+          type="submit"
+          variant="contained"
+          color="success"
+          fullWidth
+          startIcon={<SendIcon />}
+        >
           Guardar
         </Button>
       </FormControl>
