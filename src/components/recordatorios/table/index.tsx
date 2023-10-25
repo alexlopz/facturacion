@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 import DataTable from "../../data-table";
 
@@ -11,6 +11,20 @@ const RecordatoriosTable: React.FC<any> = ({ recordatorios, handlerClick }) => {
     { field: "frecuencia", headerName: "Frecuencia" },
     { field: "status", headerName: "Estado" },
     { field: "fecha_creacion", headerName: "Fecha de Creacion", width: 150 },
+    {
+      field: "ver",
+      type: "actions",
+      width: 100,
+      getActions: (params) => [
+        <Button
+          variant="outlined"
+          color="primary"
+          size="small"
+        >
+          Ver
+        </Button>
+      ],
+    },
   ];
 
   return (

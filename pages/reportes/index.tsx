@@ -1,10 +1,11 @@
 import { Button, Card, CardContent, Grid } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 import { GetServerSideProps } from "next";
-import DataTable from "../../src/components/data-table";
+import DataTableReport from "../../src/components/data-table-report";
 import { IRecordatorio } from "../../src/components/recordatorios/type";
-import FiltroReportes from "../../src/components/reportes";
+import FiltroReportes from "../../src/components/reportes/form";
 import DashboardLayout from "../../src/layout/DashboardLayout";
+import { getClientes } from "../../src/services/clientes";
 import { getFacturas } from "../../src/services/facturas";
 
 const columns: GridColDef[] = [
@@ -145,27 +146,26 @@ const pagos = [
   }
 ]
 
-const Reportes: React.FC<any> = ({ }) => {
+const Reportes: React.FC<any> = ({ clientes }) => {
   const verDato = (formulario: IRecordatorio) => {
     console.log("formulario-rec", formulario);
   };
 
   const styleTable = { height: "100%" };
   return (
-    <DashboardLayout title={"Reportes Varios"}>
+    <DashboardLayout title={"Reportes"}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={12}>
           <Card variant="outlined" sx={styleTable}>
             <CardContent>
-              {/* <VisalinkForm handleSubmit={() => console.log('click')}/> */}
-              <FiltroReportes />
+              <FiltroReportes clientes={clientes} />
             </CardContent>
           </Card>
         </Grid>
         <Grid item xs={12} md={12}>
           <Card variant="outlined">
             <CardContent>
-              <DataTable rows={pagos} columns={columns} />
+              <DataTableReport rows={pagos} columns={columns} />
             </CardContent>
           </Card>
         </Grid>
@@ -176,9 +176,11 @@ const Reportes: React.FC<any> = ({ }) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const pagos = await getFacturas();
+  const clientes = await getClientes();
   return {
     props: {
       pagos,
+      clientes,
     },
   };
 };
