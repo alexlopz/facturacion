@@ -17,7 +17,7 @@ import DataTable from "./data-table";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
-const FacturaTable: React.FC<any> = ({ productos }) => {
+const FacturaTable: React.FC<any> = ({ productos, setFormulario }) => {
   const columns: GridColDef[] = [
     { field: "cantidad", headerName: "Cant", editable: true, width: 20 },
     { field: "sku", headerName: "Sku", width: 100 },
@@ -71,8 +71,20 @@ const FacturaTable: React.FC<any> = ({ productos }) => {
     } else {
       detalleProductosCopy.push({ ...producto, cantidad: 1 });
     }
-    setDetalleProductos(detalleProductosCopy);
+    // setDetalleProductos(detalleProductosCopy);
+
+    const detalleProductosConTotales = detalleProductosCopy.map((item) => ({
+      ...item,
+      total: item.cantidad * item.precio,
+    }));
+    setDetalleProductos(detalleProductosConTotales);
     setProducto(null);
+
+    setGranTotal(
+      detalleProductosConTotales
+        .reduce((total, item) => total + item.total, 0)
+        ?.toFixed(2)
+    );
   };
 
   const restarProducto = (
@@ -91,37 +103,35 @@ const FacturaTable: React.FC<any> = ({ productos }) => {
         detalleProductosCopy.splice(index, 1);
       }
     }
-    setDetalleProductos(detalleProductosCopy);
+    // setDetalleProductos(detalleProductosCopy);
+    const detalleProductosConTotales = detalleProductosCopy.map((item) => ({
+      ...item,
+      total: (item.cantidad * item.precio).toFixed(2),
+    }));
+    setDetalleProductos(detalleProductosConTotales);
+    setGranTotal(
+      detalleProductosConTotales
+        .reduce((total, item) => total + item.total, 0)
+        .toFixed(2)
+    );
   };
 
   const actualizarTotales = () => {
     const detalleProductosCopy = detalleProductos.map((item) => ({
       ...item,
-      total: item.cantidad * item.precio,
+      total: (item.cantidad * item.precio).toFixed(2),
     }));
     setDetalleProductos(detalleProductosCopy);
   };
 
-  const borrarProductoDetalle = (
-    e: React.MouseEvent<HTMLButtonElement>,
-    params: any
-  ) => {
-    const detalleProductosCopy = [...detalleProductos];
-    const nuevosItems = detalleProductosCopy.filter(
-      (producto) => producto.id !== params.row.id
-    );
-    setDetalleProductos(nuevosItems);
-  };
   console.log("producto", producto);
   console.log("detalleProductos", detalleProductos);
 
   useEffect(() => {
     if (detalleProductos.length > 0) {
-      actualizarTotales();
+      console.log("detalleProductos", detalleProductos);
+      setFormulario({ detalle: detalleProductos, monto: granTotal });
     }
-    setGranTotal(
-      detalleProductos.reduce((total, item) => total + item.total, 0)
-    );
   }, [detalleProductos]);
 
   return (
@@ -176,20 +186,23 @@ const FacturaTable: React.FC<any> = ({ productos }) => {
           </Button>
         </Grid>
       </Grid>
-
-      <DataTable rows={detalleProductos} columns={columns} />
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignContent: "center",
-          alignItems: "end",
-          mt: 2,
-        }}
-      >
-        <Typography variant="h5">Total:</Typography>
-        <Typography variant="h3">Q {granTotal.toFixed(2)}</Typography>
-      </Box>
+      {detalleProductos.length > 0 && (
+        <>
+          <DataTable rows={detalleProductos} columns={columns} />
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignContent: "center",
+              alignItems: "end",
+              mt: 2,
+            }}
+          >
+            <Typography variant="h5">Total:</Typography>
+            <Typography variant="h3">Q {granTotal}</Typography>
+          </Box>
+        </>
+      )}
     </>
   );
 };
