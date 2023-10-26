@@ -23,6 +23,32 @@ export const crearFactura = async (body: any): Promise<IPlainObject> => {
   try {
     const response = await fetch(url, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (response.ok && response.status === 200) {
+      return response.json();
+    } else {
+      return [];
+    }
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
+export const crearDetalleFactura = async (body: any): Promise<IPlainObject> => {
+  const url = "http://localhost:3000/api/facturas/guardar/detalle";
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(body),
     });
 
