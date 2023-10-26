@@ -25,12 +25,12 @@ import TextSection from "../../tools/text-section";
 import { IProducto } from "../../../definitions/IProducto";
 import LoadingButton from '@mui/lab/LoadingButton';
 import SaveIcon from '@mui/icons-material/Save';
+import CardCliente from "../../card-cliente";
 
 
 const FacturaForm: React.FC<any> = ({ handleSubmit, clientes, formulario, loading }) => {
   const [cliente, setCliente] = useState<ICliente>();
 
-  console.log("cliente", cliente);
   const handleChange = (event: any, value: ICliente) => {
     setCliente(value);
   };
@@ -69,51 +69,7 @@ const FacturaForm: React.FC<any> = ({ handleSubmit, clientes, formulario, loadin
       <Grid container spacing={2}>
         <Grid item xs={12} sm={12} md={12} lg={12}>
           {cliente && (
-            <Card variant="outlined">
-              <CardContent>
-                <Grid container spacing={2}>
-                  <Grid item xs={12} sm={12} md={12} lg={12}>
-                    <TextSection
-                      icon={<PersonIcon />}
-                      label={"Cliente"}
-                      value={cliente?.nombre}
-                    />
-                  </Grid>
-                </Grid>
-                <Grid container spacing={2}>
-                  <Grid item xs={12} sm={12} md={12} lg={4}>
-                    <TextSection
-                      icon={<DomainIcon />}
-                      label={"Nit"}
-                      value={cliente?.nit}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={12} md={12} lg={8}>
-                    <TextSection
-                      icon={<LocationOnIcon />}
-                      label={"Direccion"}
-                      value={cliente?.direccion}
-                    />
-                  </Grid>
-                </Grid>
-                <Grid container spacing={2}>
-                  <Grid item xs={12} sm={12} md={12} lg={4}>
-                    <TextSection
-                      icon={<PhoneIcon />}
-                      label={"Tel"}
-                      value={cliente?.telefono}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={12} md={12} lg={8}>
-                    <TextSection
-                      icon={<EmailIcon />}
-                      label={"Email"}
-                      value={cliente?.email}
-                    />
-                  </Grid>
-                </Grid>
-              </CardContent>
-            </Card>
+            <CardCliente cliente={cliente} />
           )}
         </Grid>
       </Grid>

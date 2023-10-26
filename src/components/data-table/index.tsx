@@ -56,7 +56,7 @@ const DataTable: React.FC<ITable> = ({ rows, columns }) => {
           density={"compact"}
           initialState={{
             pagination: {
-              paginationModel: { page: 0, pageSize: 10 },
+              paginationModel: { page: 0, pageSize: 5 },
             },
           }}
           disableColumnFilter
