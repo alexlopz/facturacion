@@ -17,6 +17,40 @@ export const getFacturas = async (): Promise<IPlainObject> => {
   }
 };
 
+export const getFacturaPorId = async (facturaId: number): Promise<IPlainObject> => {
+  const url = `http://localhost:3000/api/facturas?id=${facturaId}`;
+
+  try {
+    const response = await fetch(url);
+
+    if (response.ok && response.status === 200) {
+      return response.json();
+    } else {
+      return [];
+    }
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
+export const getFacturasCliente = async (clienteId: number): Promise<IPlainObject> => {
+  const url = `http://localhost:3000/api/facturas/cliente?id=${clienteId}`;
+
+  try {
+    const response = await fetch(url);
+
+    if (response.ok && response.status === 200) {
+      return response.json();
+    } else {
+      return [];
+    }
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
 export const crearFactura = async (body: any): Promise<IPlainObject> => {
   const url = "http://localhost:3000/api/facturas/guardar";
 

@@ -2,6 +2,7 @@ import {
   Autocomplete,
   Box,
   Button,
+  Chip,
   FormControl,
   FormHelperText,
   Grid,
@@ -14,15 +15,18 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { ICargo } from "./type";
-import SendIcon from '@mui/icons-material/Send';
+import SendIcon from "@mui/icons-material/Send";
+import { ICliente } from "../../../definitions/ICliente";
+import { getFacturasCliente } from "../../../services/facturas";
+import DescriptionIcon from "@mui/icons-material/Description";
+import DetalleFactura from "../../factura-detalle-modal";
 
-const CargosForm: React.FC<any> = ({
-  handleSubmit,
-  clientes,
-  facturas,
-  formDefault,
-}) => {
+const CargosForm: React.FC<any> = ({ handleSubmit, clientes, formDefault }) => {
   const [formulario, setFormulario] = useState<ICargo>(formDefault);
+  const [cliente, setCliente] = useState<ICliente>();
+  const [facturas, setFacturas] = useState<any>([]);
+  const [factura, setFactura] = useState<any>();
+  const [openModal, setOpenModal] = useState(false);
 
   const handleSelectedChange = (event: SelectChangeEvent) => {
     setFormulario({ ...formulario, [event.target.name]: event.target.value });
@@ -37,6 +41,22 @@ const CargosForm: React.FC<any> = ({
   };
   console.log("formulario", formulario);
 
+  const handleChangeCliente = async (event: any, value: ICliente) => {
+    if (value) {
+      setCliente(value);
+      const response = await getFacturasCliente(value.id);
+      setFacturas(response);
+      setFactura(undefined);
+    }
+  };
+
+  const handleChangeFactura = async (event: any, value: ICliente) => {
+    setCliente(value);
+    // const response = await getFacturasCliente(value.id)
+    console.log("factura", value);
+    setFactura(value);
+  };
+
   const selectStyle = {
     mb: 4,
   };
@@ -49,8 +69,8 @@ const CargosForm: React.FC<any> = ({
           justifyContent: "center",
           alignItems: "center",
           backgroundColor: "whitesmoke",
-          margin: '-16px -16px 0 -16px',
-          padding: '5px'
+          margin: "-16px -16px 0 -16px",
+          padding: "5px",
         }}
       >
         <Typography variant="h6" gutterBottom>
@@ -62,7 +82,10 @@ const CargosForm: React.FC<any> = ({
           disablePortal
           id="cliente"
           options={clientes}
-          getOptionLabel={(option: any) => option.nombre}
+          getOptionLabel={(option: any) => `${option.nombre} - ${option.nit}`}
+          onChange={(event: any, value: ICliente) =>
+            handleChangeCliente(event, value)
+          }
           renderInput={(params) => (
             <TextField {...params} name="cliente" label="Cliente" />
           )}
@@ -78,7 +101,10 @@ const CargosForm: React.FC<any> = ({
               disablePortal
               id="factura"
               options={facturas}
-              getOptionLabel={(option: any) => option.id}
+              getOptionLabel={(option: any) => option.id.toString()}
+              onChange={(event: any, value: any) =>
+                handleChangeFactura(event, value)
+              }
               renderInput={(params) => (
                 <TextField {...params} name="factura" label="Factura" />
               )}
@@ -96,14 +122,26 @@ const CargosForm: React.FC<any> = ({
               name="concepto"
               onChange={handleSelectedChange}
             >
-              <MenuItem value={'cheque'}>Cheque rechazado</MenuItem>
-              <MenuItem value={'legales'}>Servicios legales</MenuItem>
-              <MenuItem value={'servicios adicionales'}>Servicios adicionales</MenuItem>
+              <MenuItem value={"cheque"}>Cheque rechazado</MenuItem>
+              <MenuItem value={"legales"}>Servicios legales</MenuItem>
+              <MenuItem value={"servicios adicionales"}>
+                Servicios adicionales
+              </MenuItem>
             </Select>
           </FormControl>
         </Grid>
       </Grid>
-
+      {factura && (
+        <Box sx={{ mb: 2, mt: -2 }}>
+          <Chip
+            icon={<DescriptionIcon />}
+            label={`Ver factura ${factura.id}`}
+            variant="outlined"
+            onClick={() => setOpenModal(true)}
+            color="primary"
+          />
+        </Box>
+      )}
       <Box sx={{ display: "flex", justifyContent: "center", height: "50px" }}>
         <Button
           type="submit"
@@ -115,6 +153,13 @@ const CargosForm: React.FC<any> = ({
           Guardar
         </Button>
       </Box>
+      {openModal && (
+        <DetalleFactura
+          facturaId={factura.id}
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+        />
+      )}
     </form>
   );
 };
