@@ -3,59 +3,43 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import PeopleIcon from "@mui/icons-material/People";
 import BarChartIcon from "@mui/icons-material/BarChart";
-import NewspaperIcon from '@mui/icons-material/Newspaper';
-import LayersIcon from "@mui/icons-material/Layers";
-import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
-import PaidIcon from '@mui/icons-material/Paid';
-import HistoryEduIcon from '@mui/icons-material/HistoryEdu';
+import NewspaperIcon from "@mui/icons-material/Newspaper";
+import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
+import PaidIcon from "@mui/icons-material/Paid";
+import HistoryEduIcon from "@mui/icons-material/HistoryEdu";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import { Link } from "@mui/material";
-import { Home } from "@mui/icons-material";
-import LayersOutlinedIcon from '@mui/icons-material/LayersOutlined';
-import AccessAlarmOutlinedIcon from '@mui/icons-material/AccessAlarmOutlined';
-import PaymentOutlinedIcon from '@mui/icons-material/PaymentOutlined';
-import NoteIcon from '@mui/icons-material/Note';
-import BalanceIcon from '@mui/icons-material/Balance';
-import MoneyOffIcon from '@mui/icons-material/MoneyOff';
+import LayersOutlinedIcon from "@mui/icons-material/LayersOutlined";
+import AccessAlarmOutlinedIcon from "@mui/icons-material/AccessAlarmOutlined";
+import PaymentOutlinedIcon from "@mui/icons-material/PaymentOutlined";
+import NoteIcon from "@mui/icons-material/Note";
+import BalanceIcon from "@mui/icons-material/Balance";
+import MoneyOffIcon from "@mui/icons-material/MoneyOff";
 
-import CheckIcon from '@mui/icons-material/Check';
-import NoteAltIcon from '@mui/icons-material/NoteAlt';
-import HandshakeIcon from '@mui/icons-material/Handshake';
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import CheckIcon from "@mui/icons-material/Check";
+import NoteAltIcon from "@mui/icons-material/NoteAlt";
+import HandshakeIcon from "@mui/icons-material/Handshake";
+import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import DescriptionIcon from '@mui/icons-material/Description';
 
 export const mainListItems = (
   <React.Fragment>
-    {/* <Link underline="none" color="inherit" href={`/`}>
+    <Link underline="none" color="inherit" href={`/factura`}>
       <ListItemButton>
         <ListItemIcon>
-          <Home />
+          <DescriptionIcon />
         </ListItemIcon>
-        <ListItemText primary="Home" />
+        <ListItemText primary="Crear factura" />
       </ListItemButton>
     </Link>
-    <ListItemButton>
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Orders" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Customers" />
-    </ListItemButton> */}
-
     <Link underline="none" color="inherit" href={`/Rutas`}>
-    <ListItemButton>
-      <ListItemIcon>
-        <LocalShippingIcon />
-      </ListItemIcon>
-      <ListItemText primary="Rutas de Cobro" />
-    </ListItemButton>
+      <ListItemButton>
+        <ListItemIcon>
+          <LocalShippingIcon />
+        </ListItemIcon>
+        <ListItemText primary="Rutas de Cobro" />
+      </ListItemButton>
     </Link>
 
     <Link underline="none" color="inherit" href={`/convenios`}>
@@ -186,13 +170,7 @@ export const mainListItems = (
         <ListItemText primary="Nota Debito" />
       </ListItemButton>
     </Link>
-
-
-
-
   </React.Fragment>
-
-
 );
 
 export const secondaryListItems = (

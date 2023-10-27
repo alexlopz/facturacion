@@ -97,7 +97,7 @@ const VisalinkForm: React.FC<any> = ({
               disablePortal
               id="factura"
               options={facturas}
-              getOptionLabel={(option: any) => option.factura}
+              getOptionLabel={(option: any) => option.id}
               renderInput={(params) => (
                 <TextField {...params} name="factura" label="Factura" />
               )}

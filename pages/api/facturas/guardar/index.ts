@@ -6,20 +6,20 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    const { cliente, correlativo, monto } = req.body;
-
+    const { cliente, monto } = req.body;
     const query = `
       INSERT INTO FACTURA (cliente, correlativo, fecha_vencimiento, monto, fecha_creacion, status)
       SELECT 
         $1, 
         $2, 
-        CURRENT_TIMESTAMP AT TIME ZONE 'America/Guatemala' + (SELECT dias_credito FROM CLIENTE WHERE id = $1) * INTERVAL '1 day', $3, 
+        CURRENT_TIMESTAMP AT TIME ZONE 'America/Guatemala' + (SELECT dias_credito FROM CLIENTE WHERE id = $1) * INTERVAL '1 day', 
+        $3, 
         CURRENT_TIMESTAMP AT TIME ZONE 'America/Guatemala', 
-        'ACTIVA';`;
+        'ACTIVA'
+        RETURNING id;`;
 
-    const response = await db.query(query, [cliente, correlativo, monto]);
-
-    res.status(200).json(response.rows);
+    const response = await db.query(query, [cliente, null, monto]);
+    res.status(200).json({ id: response.rows[0].id });
   } catch (error: any) {
     console.log("error", error);
     res.status(500).json({

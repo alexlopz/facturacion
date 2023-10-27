@@ -1,61 +1,92 @@
-import { Button, Card, CardContent, Grid } from "@mui/material";
+import { Alert, Card, CardContent, Grid, Snackbar } from "@mui/material";
 import { GetServerSideProps } from "next";
 import DashboardLayout from "../../src/layout/DashboardLayout";
 import { getClientes } from "../../src/services/clientes";
-import { ICargo } from "../../src/components/cargos/form/type";
 import { useState } from "react";
 import FacturaForm from "../../src/components/factura/form";
 import { getProductos } from "../../src/services/productos";
 import FacturaTable from "../../src/components/factura/table";
-import { crearFactura } from "../../src/services/facturas";
-
-const formDefault: ICargo = {
-  cliente: "",
-  factura: "",
-  concepto: "",
-};
+import { crearDetalleFactura, crearFactura } from "../../src/services/facturas";
+import { useRouter } from "next/router";
 
 const Factura: React.FC<any> = ({ clientes, productos }) => {
-  const [formulario, setFormulario] = useState<ICargo>(formDefault);
+  const [formulario, setFormulario] = useState<any>();
+  const [loading, setLoading] = useState<boolean>(false);
+  const [openAlert, setOpeAlert] = useState<boolean>(false);
 
-  const deleteUser = (
-    e: React.MouseEvent<HTMLButtonElement>,
-    params: ICargo
+  const router = useRouter();
+
+  const guardarFactura = async (
+    event: React.ChangeEvent<HTMLInputElement>,
+    cliente: any
   ) => {
-    console.log("params", params);
-    setFormulario(params);
+    event.preventDefault();
+    setLoading(true);
+    setFormulario({
+      ...formulario,
+      cliente: cliente.id,
+    });
+    const factura = await crearFactura({ ...formulario, cliente: cliente.id });
+    if (factura?.id) {
+      await crearDetalleFactura({
+        detalle: formulario.detalle,
+        facturaId: factura.id,
+      });
+      setOpeAlert(true);
+      router.reload();
+    } else {
+      setLoading(false);
+    }
   };
 
-  const guardar = async (cliente: any) => {
-    console.log("pagina", cliente);
+  const handleClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpeAlert(false);
+    router.reload();
   };
 
-  const styleTable = { height: "100%" };
+  const styleCard = { minHeight: "700px" };
   return (
-    <DashboardLayout title={"Factura"}>
+    <DashboardLayout title={"Crear nueva factura"}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={5}>
-          <Card variant="outlined" sx={styleTable}>
+          <Card variant="outlined" sx={styleCard}>
             <CardContent>
               <FacturaForm
                 clientes={clientes}
-                handleSubmit={guardar}
-                formDefault={formulario}
+                handleSubmit={guardarFactura}
+                formulario={formulario}
+                loading={loading}
               />
             </CardContent>
           </Card>
         </Grid>
         <Grid item xs={12} md={7}>
-          <Card variant="outlined" sx={styleTable}>
+          <Card variant="outlined" sx={styleCard}>
             <CardContent>
-              <FacturaTable productos={productos} />
+              <FacturaTable
+                productos={productos}
+                setFormulario={setFormulario}
+              />
             </CardContent>
           </Card>
         </Grid>
-        <Button variant="contained" color="primary" onClick={guardar}>
-          LIMPIAR
-        </Button>
       </Grid>
+      <Snackbar
+        open={openAlert}
+        autoHideDuration={2000}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        onClose={handleClose}
+      >
+        <Alert severity="success" sx={{ width: "100%" }} variant="filled">
+          Factura guardada con exito!
+        </Alert>
+      </Snackbar>
     </DashboardLayout>
   );
 };
