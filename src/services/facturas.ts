@@ -1,6 +1,6 @@
 import { IPlainObject } from "../definitions/IPlainObject";
 
-export const getFacturas = async (): Promise<IPlainObject> => {
+export const getFacturas = async (): Promise<IPlainObject[]> => {
   const url = "http://localhost:3000/api/facturas";
 
   try {

@@ -11,7 +11,7 @@ import {
 } from "@mui/x-data-grid";
 import { ITable } from "./type";
 
-const DataTable: React.FC<ITable> = ({ rows, columns }) => {
+const DataTable: React.FC<ITable> = ({ rows, columns, loading }) => {
   const CustomToolbar = () => {
     const apiRef = useGridApiContext();
 
@@ -49,7 +49,7 @@ const DataTable: React.FC<ITable> = ({ rows, columns }) => {
   };
   return (
     <div style={{ width: "100%" }}>
-      <div style={{ width: "100%" }}>
+      <div style={{ width: "100%", height: "500px" }}>
         <DataGrid
           rows={rows}
           columns={columns}
@@ -65,6 +65,7 @@ const DataTable: React.FC<ITable> = ({ rows, columns }) => {
           pageSizeOptions={[5, 10, 15]}
           hideFooterSelectedRowCount
           slots={{ toolbar: CustomToolbar }}
+          loading={loading}
         />
       </div>
     </div>

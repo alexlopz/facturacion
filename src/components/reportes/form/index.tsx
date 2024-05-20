@@ -12,11 +12,13 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 
-const FiltroReportes: React.FC<any> = ({ clientes }) => {
+const FiltroReportes: React.FC<any> = ({submitReport }) => {
   const [formulario, setFormulario] = useState<any>({});
 
+
   const handleSelectedChange = (event: SelectChangeEvent) => {
-    setFormulario({ ...formulario, [event.target.name]: event.target.value });
+    // setFormulario({ ...formulario, [event.target.name]: event.target.value });
+    submitReport(event.target.value)
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,23 +33,22 @@ const FiltroReportes: React.FC<any> = ({ clientes }) => {
 
   return (
     <form onSubmit={() => console.log()}>
-      <FormControl sx={{...selectStyle}}>
+      <FormControl sx={{ ...selectStyle }}>
         <InputLabel id="demo-simple-select-label">Tipo</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="tipo"
-          value={formulario?.cliente}
+          value={''}
           label="Tipo"
           name="tipo"
           onChange={handleSelectedChange}
         >
-          <MenuItem value="Gasolinera Shell">Reporte 1</MenuItem>
-          <MenuItem value="Gasolinera Shell">Reporte 2</MenuItem>
-          <MenuItem value="Gasolinera Shell">Reporte 3</MenuItem>
-
+          <MenuItem value="FACTURAS">FACTURAS</MenuItem>
+          <MenuItem value="RECIBOS">RECIBOS</MenuItem>
+          <MenuItem value="SOLICITUDES">SOLICITUDES</MenuItem>
         </Select>
       </FormControl>
-      <FormControl sx={{...selectStyle, minWidth: 300}}>
+      {/* <FormControl sx={{ ...selectStyle, minWidth: 300 }}>
         <InputLabel id="demo-simple-select-label">Cliente</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -120,7 +121,7 @@ const FiltroReportes: React.FC<any> = ({ clientes }) => {
           <MenuItem value={20}>ACTIVO</MenuItem>
           <MenuItem value={30}>AUTORIZADO</MenuItem>
         </Select>
-      </FormControl>
+      </FormControl> */}
       {/* <FormControl sx={selectStyle}>
         <InputLabel id="demo-simple-select-label">Fecha</InputLabel>
         <Select
@@ -136,8 +137,8 @@ const FiltroReportes: React.FC<any> = ({ clientes }) => {
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
       </FormControl> */}
-            <FormControl sx={selectStyle}>
-      <TextField
+      {/* <FormControl sx={selectStyle}>
+        <TextField
           id="outlined-basic"
           label="Rango de Fechas"
           variant="outlined"
@@ -163,7 +164,7 @@ const FiltroReportes: React.FC<any> = ({ clientes }) => {
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
-      </FormControl>
+      </FormControl> */}
     </form>
   );
 };

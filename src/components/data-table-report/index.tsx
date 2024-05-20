@@ -13,65 +13,63 @@ import {
   useGridApiContext,
 } from "@mui/x-data-grid";
 import { ITable } from "./type";
+import { IPlainObject } from "../../definitions/IPlainObject";
+import ReporteFactura from "./reporte-factura";
 
-const DataTableReport: React.FC<ITable> = ({ rows, columns }) => {
-  const CustomToolbar = () => {
-    const apiRef = useGridApiContext();
-
-    return (
-      <GridToolbarContainer
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          margin: "10px 5px",
-        }}
-      >
-        <Box>
-          <Tooltip title="Descargar CSV">
-            <IconButton
-              aria-label="delete"
-              size="large"
-              onClick={() => apiRef.current.exportDataAsCsv()}
-            >
-              <FileDownloadOutlinedIcon fontSize="inherit" />
-            </IconButton>
-          </Tooltip>
-          <Tooltip title="Imprimir">
-            <IconButton
-              aria-label="print"
-              size="large"
-              onClick={() => apiRef.current.exportDataAsPrint()}
-            >
-              <LocalPrintshopOutlinedIcon fontSize="inherit" />
-            </IconButton>
-          </Tooltip>
-        </Box>
-        <GridToolbarColumnsButton />
-        <GridToolbarFilterButton />
-        <GridToolbarDensitySelector />
-        <GridToolbarQuickFilter />
-      </GridToolbarContainer>
-    );
+const DataTableReport: React.FC<IPlainObject> = ({ tipoReporte }) => {
+  const renderComponent = () => {
+    switch (tipoReporte) {
+      case "FACTURAS":
+        return <ReporteFactura />;
+      case "RECIBO":
+        return <ReporteFactura />;
+      case "SOLICITUDES":
+        return <ReporteFactura />;
+      default:
+        return <div>Component por defecto</div>;
+    }
   };
-  return (
-    <div style={{ width: "100%" }}>
-      <div style={{ width: "100%" }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          density={"compact"}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 10 },
-            },
-          }}
-          pageSizeOptions={[5, 10, 15]}
-          hideFooterSelectedRowCount
-          slots={{ toolbar: CustomToolbar }}
-        />
-      </div>
-    </div>
-  );
+
+  // const CustomToolbar = () => {
+  //   const apiRef = useGridApiContext();
+
+  // return (
+  // <GridToolbarContainer
+  //   sx={{
+  //     display: "flex",
+  //     justifyContent: "space-between",
+  //     margin: "10px 5px",
+  //   }}
+  // >
+  //   <Box>
+  //     <Tooltip title="Descargar CSV">
+  //       <IconButton
+  //         aria-label="delete"
+  //         size="large"
+  //         onClick={() => apiRef.current.exportDataAsCsv()}
+  //       >
+  //         <FileDownloadOutlinedIcon fontSize="inherit" />
+  //       </IconButton>
+  //     </Tooltip>
+  //     <Tooltip title="Imprimir">
+  //       <IconButton
+  //         aria-label="print"
+  //         size="large"
+  //         onClick={() => apiRef.current.exportDataAsPrint()}
+  //       >
+  //         <LocalPrintshopOutlinedIcon fontSize="inherit" />
+  //       </IconButton>
+  //     </Tooltip>
+  //   </Box>
+  //   <GridToolbarColumnsButton />
+  //   <GridToolbarFilterButton />
+  //   <GridToolbarDensitySelector />
+  //   <GridToolbarQuickFilter />
+  // </GridToolbarContainer>
+  //   );
+  // };
+
+  return <>{renderComponent()}</>;
 };
 
 export default DataTableReport;
